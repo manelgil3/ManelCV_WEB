@@ -89,6 +89,10 @@ section {
     top: 0;
     width: 100%;
     z-index: 100;
+    background-color: rgba(123, 79, 149, 0.95); /* Violet color with some transparency */
+    padding: 5px 10px;  /* Add some padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow for depth */
+    transition: background-color 0.3s;  /* Smooth transition for color changes */
 }
 
 .sticky + header {
@@ -131,4 +135,38 @@ footer {
     font-weight: 600; /* Making the date bold */
     color: #9400D3; /* Darker violet for the date, change if necessary */
     margin-bottom: 10px; /* Space between date and the job description */
+}
+
+/* General Button Styling */
+button, .navbar a {
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    padding: 10px 20px; /* Padding around text */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+    font-weight: 600; /* Slightly bold font */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    cursor: pointer;
+}
+
+/* Button Hover Effect */
+button:hover, .navbar a:hover {
+    background-color: #985ba5; /* Lighter violet on hover */
+    transform: scale(1.05); /* Slightly increase the size when hovered */
+}
+
+/* Button Active Effect (when clicked) */
+button:active, .navbar a:active {
+    transform: scale(0.95); /* Slightly decrease the size when clicked */
+}
+
+/* For the dark mode button at the bottom of the page */
+.dark-mode-toggle {
+    background-color: #7b4f95; /* Violet color to match theme */
+    color: #fff; /* White text */
+    margin-top: 20px; /* Space above the button */
+    display: inline-block; /* To apply padding and border-radius */
+}
+
+.dark-mode-toggle:hover {
+    background-color: #985ba5; /* Lighter violet on hover */
 }
