@@ -25,13 +25,11 @@ h1, h2, h3 {
     margin-bottom: 1rem;
 }
 
-/* Titles with a background line */
 h2 {
-    position: relative;
-    z-index: 1;
-    padding: 0 10px; /* Giving space for the text over the line */
-    background-color: white; /* This ensures the title's background is solid and hides the line behind it */
-    display: inline-block; /* This ensures the background color only wraps the text, not the entire width */
+    background-color: #f0e5ff;  /* Light Violet */
+    padding: 0.5rem;  /* Padding for the title */
+    display: block;  /* Takes up the entire line */
+    margin: 0;  /* Resetting any margins */
 }
 
 h2::before {
@@ -170,3 +168,31 @@ button:active, .navbar a:active {
 .dark-mode-toggle:hover {
     background-color: #985ba5; /* Lighter violet on hover */
 }
+
+/* Fancy Section Buttons */
+.section-btn {
+    display: inline-block;
+    background-color: #7b4f95;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    margin: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.section-btn:hover {
+    background-color: #985ba5;
+    transform: scale(1.05);
+}
+
+.section-btn:active {
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
