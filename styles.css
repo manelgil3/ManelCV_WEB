@@ -77,11 +77,6 @@ section {
     text-decoration: none;
 }
 
-.navbar a:hover {
-    background: #985ba5; /* Lighter violet on hover */
-    color: white;
-}
-
 .sticky {
     position: fixed;
     top: 0;
