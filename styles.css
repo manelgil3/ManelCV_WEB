@@ -62,11 +62,6 @@ section {
 }
 
 /* Navbar */
-.navbar {
-    overflow: hidden;
-    background-color: #7b4f95; /* Violet color for navbar */
-    margin-bottom: 1rem;
-}
 
 .navbar a {
     float: left;
