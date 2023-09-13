@@ -2,7 +2,6 @@
 document.getElementById('currentYear').textContent = new Date().getFullYear();
 
 // 2. Sticky Navbar
-// Assuming you have a navbar with id="navbar"
 let navbar = document.getElementById("navbar");
 let sticky = navbar.offsetTop;
 
@@ -19,10 +18,15 @@ function stickyNavbar() {
     }
 }
 
-// 3. Fade In Effect
+// 3. Top Function
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+// 4. Fade In Effect
 function fadeInOnScroll() {
     let elements = document.querySelectorAll('.fade-in');
-
     for (let i = 0; i < elements.length; i++) {
         let windowHeight = window.innerHeight;
         let revealTop = elements[i].getBoundingClientRect().top;
@@ -36,10 +40,8 @@ function fadeInOnScroll() {
     }
 }
 
-// 4. Tooltip
-// Assuming you have elements with class="tooltip"
+// 5. Tooltip
 let tooltips = document.querySelectorAll('.tooltip');
-
 tooltips.forEach((tooltip) => {
     tooltip.addEventListener('mouseenter', function() {
         let tooltipText = this.getAttribute('data-tooltip');
@@ -62,3 +64,13 @@ tooltips.forEach((tooltip) => {
         }
     });
 });
+
+// 6. Theme Toggle
+function toggleTheme() {
+    let bodyElement = document.body;
+    if(bodyElement.classList.contains('dark-mode')) {
+        bodyElement.classList.remove('dark-mode');
+    } else {
+        bodyElement.classList.add('dark-mode');
+    }
+}
