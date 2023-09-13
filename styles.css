@@ -77,7 +77,6 @@ section {
     top: 0;
     width: 100%;
     z-index: 100;
-    background-color: rgba(123, 79, 149, 0.95); /* Violet color with some transparency */
     padding: 5px 10px;  /* Add some padding */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow for depth */
     transition: background-color 0.3s;  /* Smooth transition for color changes */
