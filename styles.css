@@ -101,14 +101,14 @@ section {
 
 /* Work Experience section improvements */
 #workExperience h3 {
-    color: #7D26CD; /* Violet Color for the company name, change if necessary */
+    color: #00610e; /* Darker green for the title, change if necessary */
     font-weight: 600; /* Making it slightly bold */
     margin-bottom: 5px; /* Space between company name and date */
 }
 
 #workExperience p:first-of-type {
     font-weight: 600; /* Making the date bold */
-    color: #9400D3; /* Darker violet for the date, change if necessary */
+    color: #3d860b; /* Lighter green for the date, change if necessary */
     margin-bottom: 10px; /* Space between date and the job description */
 }
 
@@ -125,7 +125,7 @@ button, .navbar a {
 
 /* Button Hover Effect */
 button:hover, .navbar a:hover {
-    background-color: #985ba5; /* Lighter violet on hover */
+    background-color: #34a203; /* Lighter violet on hover */
     transform: scale(1.05); /* Slightly increase the size when hovered */
 }
 
