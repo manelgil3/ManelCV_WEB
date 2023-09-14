@@ -9,6 +9,23 @@
     --button-color-dark: #444;  /* For buttons in dark mode */
 }
 
+.linkedin-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0e76a8; /* LinkedIn blue */
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.linkedin-link:hover {
+    color: #005583; /* Darker LinkedIn blue on hover */
+}
+
+.linkedin-link i {
+    margin-right: 5px;
+}
+
 .first-name {
     margin-bottom: 5px; /* Adjust this value as needed */
 }
