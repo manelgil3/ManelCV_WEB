@@ -1,10 +1,13 @@
 /* Green Palette */
 :root {
-    --title-transparent: rgba(193, 209, 31, 0.6);  /* For the transparent title */
-    --header-footer: #3d860b;  /* For header and footer */
-    --button-color: #6ec007;  /* For buttons */
+    --title-transparent-light: rgba(193, 209, 31, 0.6);  /* For the transparent title in light mode */
+    --header-footer-light: #3d860b;  /* For header and footer in light mode */
+    --button-color-light: #6ec007;  /* For buttons in light mode */
+    
+    --title-transparent-dark: rgba(85, 85, 85, 0.6);  /* For the transparent title in dark mode */
+    --header-footer-dark: #333;  /* For header and footer in dark mode */
+    --button-color-dark: #444;  /* For buttons in dark mode */
 }
-
 
 /* Basic reset */
 * {
@@ -21,7 +24,7 @@ body {
 }
 
 header, footer {
-    background-color: var(--header-footer);
+    background-color: var(--header-footer-light);
     color: #fff;
     text-align: center;
     padding: 1rem;
@@ -34,7 +37,7 @@ h1, h2, h3 {
 }
 
 h2 {
-    background-color: var(--title-transparent);
+    background-color: var(--title-transparent-light);
     padding: 0.5rem;  /* Padding for the title */
     display: block;  /* Takes up the entire line */
     margin: 0;  /* Resetting any margins */
@@ -66,7 +69,7 @@ section {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    background-color: var(--button-color);  /* Background color */
+    background-color: var(--button-color-light);  /* Background color */
 }
 
 .sticky {
@@ -84,32 +87,40 @@ section {
 }
 
 .dark-mode {
-    background-color: #333;  /* A neutral dark gray */
+    background-color: #202020;  /* A neutral dark gray */
 }
 
 .dark-mode header, .dark-mode footer {
-    background-color: #444;  /* A slightly lighter gray */
+    background-color: var(--header-footer-dark);  /* Dark mode header and footer */
 }
 
 .dark-mode a {
-    color: #e6e6e6;
+    color: #b0b0b0;
 }
 
 .dark-mode .navbar a:hover {
-    background: #4c4c4c;
+    background: #505050;
 }
 
 /* Work Experience section improvements */
 #workExperience h3 {
-    color: #00610e; /* Darker green for the title, change if necessary */
+    color: #00610e; /* Darker green for the title in light mode */
     font-weight: 600; /* Making it slightly bold */
     margin-bottom: 5px; /* Space between company name and date */
 }
 
 #workExperience p:first-of-type {
     font-weight: 600; /* Making the date bold */
-    color: #3d860b; /* Lighter green for the date, change if necessary */
+    color: #3d860b; /* Lighter green for the date in light mode */
     margin-bottom: 10px; /* Space between date and the job description */
+}
+
+.dark-mode #workExperience h3 {
+    color: #999; /* Darker gray for the title in dark mode */
+}
+
+.dark-mode #workExperience p:first-of-type {
+    color: #777; /* Lighter gray for the date in dark mode */
 }
 
 /* General Button Styling */
@@ -125,31 +136,38 @@ button, .navbar a {
 
 /* Button Hover Effect */
 button:hover, .navbar a:hover {
-    background-color: #34a203; /* Lighter violet on hover */
-    transform: scale(1.05); /* Slightly increase the size when hovered */
+    background-color: #34a203; /* Lighter green on hover in light mode */
 }
 
-/* Button Active Effect (when clicked) */
-button:active, .navbar a:active {
-    transform: scale(0.95); /* Slightly decrease the size when clicked */
+.dark-mode button:hover, .dark-mode .navbar a:hover {
+    background-color: #555; /* Lighter gray on hover in dark mode */
 }
 
 /* For the dark mode button at the bottom of the page */
 .dark-mode-toggle {
-    background-color: var(--button-color);
-    color: #fff; /* White text */
+    background-color: var(--button-color-light);
+    color: #fff; /* White text in light mode */
     margin-top: 20px; /* Space above the button */
     display: inline-block; /* To apply padding and border-radius */
 }
 
 .dark-mode-toggle:hover {
-    background-color: #985ba5; /* Lighter violet on hover */
+    background-color: #985ba5; /* Lighter violet on hover in light mode */
+}
+
+.dark-mode .dark-mode-toggle {
+    background-color: var(--button-color-dark);
+    color: #e6e6e6; /* Light gray text in dark mode */
+}
+
+.dark-mode .dark-mode-toggle:hover {
+    background-color: #606060; /* Lighter gray on hover in dark mode */
 }
 
 /* Fancy Section Buttons */
 .section-btn {
     display: inline-block;
-    background-color: var(--button-color);
+    background-color: var(--button-color-light);
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -163,11 +181,18 @@ button:active, .navbar a:active {
 }
 
 .section-btn:hover {
-    background-color: #985ba5;
-    transform: scale(1.05);
+    background-color: #985ba5; /* Lighter violet on hover in light mode */
 }
 
 .section-btn:active {
     transform: scale(1);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .section-btn {
+    background-color: var(--button-color-dark);
+}
+
+.dark-mode .section-btn:hover {
+    background-color: #606060; /* Lighter gray on hover in dark mode */
 }
