@@ -1,7 +1,10 @@
 /* Green Palette */
---title-transparent: rgba(193, 209, 31, 0.6);  /* For the transparent title */
---header-footer: #3d860b;  /* For header and footer */
---button-color: #6ec007;  /* For buttons */
+:root {
+    --title-transparent: rgba(193, 209, 31, 0.6);  /* For the transparent title */
+    --header-footer: #3d860b;  /* For header and footer */
+    --button-color: #6ec007;  /* For buttons */
+}
+
 
 /* Basic reset */
 * {
