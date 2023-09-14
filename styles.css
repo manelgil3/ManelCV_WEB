@@ -169,11 +169,12 @@ section {
     margin-bottom: 5px; /* Space between company name and date */
 }
 
-#education p:first-of-type {
+.uni-name {
     font-weight: 600; /* Making the date bold */
     color: #3d860b; /* Lighter green for the date in light mode */
     margin-bottom: 10px; /* Space between date and the job description */
 }
+
 
 .dark-mode #education h3 {
     color: #999; /* Darker gray for the title in dark mode */
