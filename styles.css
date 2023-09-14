@@ -92,6 +92,14 @@ header {
     margin-left: 40px;  /* Adjusted to move further to the right */
 }
 
+.info-section h2 {
+    margin-bottom: 5px; /* Reduce this value as desired */
+}
+
+.info-section p {
+    margin-top: 0; /* Ensure there's no top margin adding extra space */
+}
+
 
 .social-section {
     display: flex;
