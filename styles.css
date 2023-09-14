@@ -88,8 +88,10 @@ header {
 .info-section {
     display: flex;
     flex-direction: column;
-    margin-right: 30px;
+    margin-right: 20px;
+    margin-left: 40px;  /* Adjusted to move further to the right */
 }
+
 
 .social-section {
     display: flex;
