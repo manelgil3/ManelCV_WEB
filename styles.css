@@ -86,6 +86,7 @@ section {
     padding-top: 60px;  /* height of the navbar */
 }
 
+/* Dark Mode Adjustments */
 .dark-mode {
     background-color: #202020;  /* A neutral dark gray */
 }
@@ -94,13 +95,27 @@ section {
     background-color: var(--header-footer-dark);  /* Dark mode header and footer */
 }
 
-.dark-mode a {
-    color: #b0b0b0;
+.dark-mode a, .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p {
+    color: #ffffff;  /* White text */
 }
 
 .dark-mode .navbar a:hover {
     background: #505050;
 }
+
+.dark-mode h2 {
+    background-color: #555;  /* Dark gray for titles in dark mode */
+}
+
+/* Work Experience section improvements in dark mode */
+.dark-mode #workExperience h3 {
+    color: #ffffff;  /* White text for the title in dark mode */
+}
+
+.dark-mode #workExperience p:first-of-type {
+    color: #ffffff;  /* White text for the date in dark mode */
+}
+
 
 /* Work Experience section improvements */
 #workExperience h3 {
