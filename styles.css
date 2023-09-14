@@ -9,33 +9,34 @@
     --button-color-dark: #444;  /* For buttons in dark mode */
 }
 
-.linkedin-button {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
+/* LinkedIn button styling */
+.linkedin-btn {
+    background-color: #ffffff;  /* White background */
+    color: #0A66C2;  /* LinkedIn blue text */
+    border: 1px solid #0A66C2; /* Blue border */
+    padding: 10px 15px;
     border-radius: 4px;
-    background-color: white;  /* LinkedIn blue */
-    color: #0e76a8;  /* White text and icon */
-    font-size: 16px;
-    text-decoration: none;
+    cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.linkedin-button:hover {
-    background-color: #005583;  /* Darker LinkedIn blue on hover */
+.linkedin-btn:hover {
+    background-color: #e8f3ff;  /* Light blue background for hover effect */
+}
+
+/* Maintaining LinkedIn button style in dark mode */
+.dark-mode .linkedin-btn {
+    background-color: #ffffff;  /* White background */
+    color: #0A66C2;  /* LinkedIn blue text */
+    border: 1px solid #0A66C2; /* Blue border */
 }
 
 .linkedin-button i {
     margin-right: 5px;
-}
-
-.dark-mode .linkedin-btn {
-    background-color: #0A66C2; /* LinkedIn blue */
-    color: #ffffff;  /* White text */
-}
-
-.dark-mode .linkedin-btn:hover {
-    background-color: #084a85;  /* Slightly darker blue for hover effect in dark mode */
 }
 
 
