@@ -142,6 +142,40 @@ section {
     color: #999; /* Darker gray for the title in dark mode */
 }
 
+/* education section improvements */
+#education h3 {
+    color: #00610e; /* Darker green for the title in light mode */
+    font-weight: 600; /* Making it slightly bold */
+    margin-bottom: 5px; /* Space between company name and date */
+}
+
+#education p:first-of-type {
+    font-weight: 600; /* Making the date bold */
+    color: #3d860b; /* Lighter green for the date in light mode */
+    margin-bottom: 10px; /* Space between date and the job description */
+}
+
+.dark-mode #education h3 {
+    color: #999; /* Darker gray for the title in dark mode */
+}
+
+/* skills section improvements */
+#skills h3 {
+    color: #00610e; /* Darker green for the title in light mode */
+    font-weight: 600; /* Making it slightly bold */
+    margin-bottom: 5px; /* Space between company name and date */
+}
+
+#skills p:first-of-type {
+    font-weight: 600; /* Making the date bold */
+    color: #3d860b; /* Lighter green for the date in light mode */
+    margin-bottom: 10px; /* Space between date and the job description */
+}
+
+.dark-mode #skills h3 {
+    color: #999; /* Darker gray for the title in dark mode */
+}
+
 .dark-mode li {
     color: #ffffff;  /* White text for list items in dark mode */
 }
