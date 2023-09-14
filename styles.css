@@ -48,6 +48,34 @@
     margin-right: 5px;
 }
 
+/* GitHub button styling */
+.github-btn {
+    display: inline-block;
+    background-color: #ffffff; /* White background always */
+    color: #333; /* GitHub default color */
+    border: 1px solid #333; /* GitHub border */
+    padding: 10px 15px;
+    border-radius: 25px; 
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 10px; /* Add some spacing between LinkedIn and GitHub buttons */
+}
+
+.github-btn:hover {
+    background-color: #f6f6f6; /* Light gray background for hover effect */
+}
+
+.github-btn i { /* Style for the icon */
+    color: #333; /* GitHub icon color */
+}
+
 
 .first-name {
     margin-bottom: 5px; /* Adjust this value as needed */
