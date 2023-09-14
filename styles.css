@@ -14,45 +14,12 @@
 
 /* LinkedIn button styling */
 .linkedin-btn {
-    display: inline-block;     /* Ensures the link takes up space like a block element but remains inline */
-    background-color: #ffffff;  /* White background always */
-    color: #0A66C2;  /* LinkedIn blue text always */
-    border: 1px solid #0A66C2; /* Blue border */
-    padding: 10px 15px;
-    border-radius: 25px;       /* Matching your other buttons' border radius */
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;     /* Removes underline from link */
-    font-weight: 600;          /* Consistent font-weight with other buttons */
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Slight shadow for depth */
-}
-
-.linkedin-btn:hover {
-    background-color: #e8f3ff;  /* Light blue background for hover effect */
-}
-
-.linkedin-btn i {  /* Style for the icon */
-    color: #0A66C2;  /* LinkedIn blue icon always */
-}
-
-.dark-mode .linkedin-btn {
-    color: #0A66C2;  /* LinkedIn blue text in dark mode */
-}
-
-
-.linkedin-button i {
-    margin-right: 5px;
-}
-
-header .github-btn {
-    display: inline-block;
-    background-color: #ffffff; /* White background always */
-    color: #333; /* GitHub default color */
-    border: 1px solid #333; /* GitHub border */
+    background-color: #ffffff;
+    color: #0A66C2;
+    border: 1px solid #0A66C2;
     padding: 10px 15px;
     border-radius: 25px;
     text-align: center;
@@ -60,35 +27,86 @@ header .github-btn {
     transition: background-color 0.3s ease;
     text-decoration: none;
     font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.linkedin-btn:hover {
+    background-color: #e8f3ff;
+}
+
+.linkedin-btn i {
+    color: #0A66C2;
+}
+
+.dark-mode .linkedin-btn {
+    color: #0A66C2;
+}
+
+.linkedin-button i {
+    margin-right: 5px;
+}
+
+.github-btn {
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #333;
+    padding: 10px 15px;
+    border-radius: 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-left: 10px;
+    margin-left: 0;
 }
 
-header .github-btn:hover {
-    background-color: #f6f6f6; /* Light gray background for hover effect */
+.github-btn:hover {
+    background-color: #f6f6f6;
 }
 
-header .github-btn i {
-    color: #333; /* GitHub icon color */
+.github-btn i {
+    color: #333;
 }
 
-.first-name {
-    margin-bottom: 5px; /* Adjust this value as needed */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
 }
 
-.last-name {
-    margin-top: 5px; /* Adjust this value as needed */
+.profile-section {
+    display: flex;
+    align-items: center;
 }
 
-/* Basic reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+#profilePic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
 }
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.social-section {
+    display: flex;
+    gap: 10px;
+}
+
+.linkedin-btn, .github-btn {
+    vertical-align: middle;
+}
+
 
 body {
     font-family: 'Roboto', sans-serif;
