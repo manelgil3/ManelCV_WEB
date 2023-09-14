@@ -85,13 +85,6 @@ header {
     align-items: center;
 }
 
-#profilePic {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 20px;
-}
-
 .info-section {
     display: flex;
     flex-direction: column;
@@ -145,12 +138,14 @@ section {
 }
 
 #profilePic {
-    width: 150px;
+    width: 150px;  /* Both width and height should be the same to ensure a perfect circle */
+    height: 150px; 
     border-radius: 50%;
     margin-bottom: 1rem;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    object-fit: cover;  /* This ensures that the image scales correctly to fill the circle */
 }
 
 /* Navbar */
