@@ -36,7 +36,9 @@
     color: #0A66C2;  /* LinkedIn blue icon always */
 }
 
-/* No changes needed in dark mode since it should remain the same */
+.dark-mode .linkedin-btn {
+    color: #0A66C2;  /* LinkedIn blue text in dark mode */
+}
 
 
 .linkedin-button i {
