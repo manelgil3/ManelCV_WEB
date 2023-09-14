@@ -14,8 +14,8 @@
     margin-top: 10px;
     padding: 10px 20px;
     border-radius: 4px;
-    background-color: #0e76a8;  /* LinkedIn blue */
-    color: white;  /* White text and icon */
+    background-color: white;  /* LinkedIn blue */
+    color: #0e76a8;  /* White text and icon */
     font-size: 16px;
     text-decoration: none;
     transition: background-color 0.3s ease;
