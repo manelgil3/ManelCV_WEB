@@ -9,6 +9,14 @@
     --button-color-dark: #444;  /* For buttons in dark mode */
 }
 
+.first-name {
+    margin-bottom: 5px; /* Adjust this value as needed */
+}
+
+.last-name {
+    margin-top: 5px; /* Adjust this value as needed */
+}
+
 /* Basic reset */
 * {
     margin: 0;
