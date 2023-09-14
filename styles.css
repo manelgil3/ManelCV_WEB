@@ -10,9 +10,9 @@
 }
 
 /* LinkedIn button styling */
-.linkedin-btn, .linkedin-btn i {
-    background-color: #ffffff;  /* White background */
-    color: #0A66C2;  /* LinkedIn blue text and icon */
+.linkedin-btn {
+    background-color: #ffffff;  /* White background always */
+    color: #0A66C2;  /* LinkedIn blue text always */
     border: 1px solid #0A66C2; /* Blue border */
     padding: 10px 15px;
     border-radius: 4px;
@@ -24,17 +24,16 @@
     gap: 5px;
 }
 
-.linkedin-btn:hover, .linkedin-btn:hover i {
+.linkedin-btn:hover {
     background-color: #e8f3ff;  /* Light blue background for hover effect */
-    color: #0A66C2;  /* Maintain LinkedIn blue text and icon color on hover */
 }
 
-/* Maintaining LinkedIn button style in dark mode */
-.dark-mode .linkedin-btn, .dark-mode .linkedin-btn i {
-    background-color: #ffffff;  /* White background */
-    color: #0A66C2;  /* LinkedIn blue text and icon */
-    border: 1px solid #0A66C2; /* Blue border */
+.linkedin-btn i {  /* Style for the icon */
+    color: #0A66C2;  /* LinkedIn blue icon always */
 }
+
+/* No changes needed in dark mode since it should remain the same */
+
 
 .linkedin-button i {
     margin-right: 5px;
