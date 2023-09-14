@@ -13,10 +13,17 @@ window.onscroll = function() {
 function stickyNavbar() {
     if (window.pageYOffset >= sticky) {
         navbar.classList.add("sticky");
+        document.querySelectorAll("section").forEach(sec => {
+            sec.style.paddingTop = "70px"; // adjust this value based on your navbar's height
+        });
     } else {
         navbar.classList.remove("sticky");
+        document.querySelectorAll("section").forEach(sec => {
+            sec.style.paddingTop = "0"; // reset padding
+        });
     }
 }
+
 
 // 3. Top Function
 function topFunction() {
