@@ -11,17 +11,21 @@
 
 /* LinkedIn button styling */
 .linkedin-btn {
+    display: inline-block;     /* Ensures the link takes up space like a block element but remains inline */
     background-color: #ffffff;  /* White background always */
     color: #0A66C2;  /* LinkedIn blue text always */
     border: 1px solid #0A66C2; /* Blue border */
     padding: 10px 15px;
-    border-radius: 4px;
+    border-radius: 25px;       /* Matching your other buttons' border radius */
+    text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    text-decoration: none;
+    text-decoration: none;     /* Removes underline from link */
+    font-weight: 600;          /* Consistent font-weight with other buttons */
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Slight shadow for depth */
 }
 
 .linkedin-btn:hover {
