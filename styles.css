@@ -142,6 +142,10 @@ section {
     color: #999; /* Darker gray for the title in dark mode */
 }
 
+.dark-mode li {
+    color: #ffffff;  /* White text for list items in dark mode */
+}
+
 .dark-mode #workExperience p:first-of-type {
     color: #777; /* Lighter gray for the date in dark mode */
 }
