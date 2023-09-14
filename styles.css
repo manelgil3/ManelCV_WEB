@@ -1,3 +1,6 @@
+/* Importing Roboto Font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 /* Green Palette */
 :root {
     --title-transparent-light: rgba(193, 209, 31, 0.6);  /* For the transparent title in light mode */
@@ -62,7 +65,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
     margin: 0 20px; /* Adding horizontal margin */
