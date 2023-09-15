@@ -12,6 +12,14 @@
     --button-color-dark: #444;  /* For buttons in dark mode */
 }
 
+/* Theme Toggle Button */
+#themeToggle {
+    position: fixed;   /* Fixed positioning to keep it in view */
+    bottom: 10px;      /* 10px from the bottom */
+    right: 10px;       /* 10px from the right */
+    z-index: 1000;     /* To ensure it's above other elements */
+}
+
 /* LinkedIn button styling */
 .linkedin-btn {
     display: inline-flex;
