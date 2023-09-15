@@ -72,6 +72,10 @@
     color: #333;
 }
 
+.dark-mode .github-btn {
+    color: #333;
+}
+
 header {
     display: flex;
     justify-content: space-between;
