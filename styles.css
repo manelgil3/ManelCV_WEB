@@ -12,12 +12,26 @@
     --button-color-dark: #444;  /* For buttons in dark mode */
 }
 
-/* Theme Toggle Button */
 #themeToggle {
-    position: fixed;   /* Fixed positioning to keep it in view */
-    bottom: 10px;      /* 10px from the bottom */
-    leftt: 10px;       /* 10px from the right */
-    z-index: 1000;     /* To ensure it's above other elements */
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1000;
+    background-color: black;
+    color: white; /* Icon color */
+    border: none;
+    border-radius: 50%; /* Makes the button circular */
+    width: 40px; /* Set to your desired size */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+/* If you want to adjust the moon's appearance when hovered */
+#themeToggle:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent black */
 }
 
 /* Top Button */
