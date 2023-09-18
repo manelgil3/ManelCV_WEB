@@ -75,17 +75,17 @@ tooltips.forEach((tooltip) => {
 // 6. Theme Toggle
 document.getElementById('themeToggle').addEventListener('click', function() {
     const btn = document.getElementById('themeToggle');
+    const body = document.body;
     
-    if (btn.classList.contains('light-mode')) {
-        // If it's currently light mode, switch to dark mode
-        btn.classList.remove('light-mode');
-        btn.classList.add('dark-mode');
-        btn.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for dark mode
+    if (body.classList.contains('light-mode')) {
+        body.classList.replace('light-mode', 'dark-mode');
+        btn.classList.replace('light-mode', 'dark-mode');
+        btn.innerHTML = '<i class="fas fa-sun"></i>'; 
     } else {
-        // If it's currently dark mode, switch to light mode
-        btn.classList.remove('dark-mode');
-        btn.classList.add('light-mode');
-        btn.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for light mode
+        body.classList.replace('dark-mode', 'light-mode');
+        btn.classList.replace('dark-mode', 'light-mode');
+        btn.innerHTML = '<i class="fas fa-moon"></i>'; 
     }
 });
+
 
