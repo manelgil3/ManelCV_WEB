@@ -30,19 +30,41 @@
 }
 
 /* If you want to adjust the moon's appearance when hovered */
-#themeToggle:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent black */
+/* Light mode styles */
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+#themeToggle.light-mode {
+    background-color: black;
+    color: white; 
+}
+
+#themeToggle.light-mode:hover {
+    background-color: rgba(0, 0, 0, 0.8); 
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: black;
+    color: white;
 }
 
 #themeToggle.dark-mode {
     background-color: white;
-    color: black; /* Icon color for dark mode */
+    color: black; 
 }
 
-/* If you want to adjust the sun's appearance when hovered in dark mode */
 #themeToggle.dark-mode:hover {
-    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+    background-color: rgba(255, 255, 255, 0.8); 
 }
+
+/* Other styles (not related to theming) */
+#themeToggle {
+    /* ... your styles ... */
+}
+
 
 /* Top Button */
 #topBtn {
