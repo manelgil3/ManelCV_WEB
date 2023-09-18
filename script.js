@@ -73,11 +73,15 @@ tooltips.forEach((tooltip) => {
 });
 
 // 6. Theme Toggle
-function toggleTheme() {
-    let bodyElement = document.body;
-    if(bodyElement.classList.contains('dark-mode')) {
-        bodyElement.classList.remove('dark-mode');
+const themeToggleButton = document.getElementById('themeToggle');
+
+themeToggleButton.addEventListener('click', function() {
+    if (document.body.classList.contains('dark-mode')) {
+        document.body.classList.remove('dark-mode');
+        themeToggleButton.innerHTML = '<i class="fas fa-moon"></i>';
     } else {
-        bodyElement.classList.add('dark-mode');
+        document.body.classList.add('dark-mode');
+        themeToggleButton.innerHTML = '<i class="fas fa-sun"></i>';
     }
-}
+});
+
