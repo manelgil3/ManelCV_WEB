@@ -15,7 +15,7 @@
 #themeToggle {
     position: fixed;
     bottom: 10px;
-    right: 10px;
+    left: 10px;
     z-index: 1000;
     background-color: black;
     color: white; /* Icon color */
@@ -32,6 +32,16 @@
 /* If you want to adjust the moon's appearance when hovered */
 #themeToggle:hover {
     background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent black */
+}
+
+#themeToggle.dark-mode {
+    background-color: white;
+    color: black; /* Icon color for dark mode */
+}
+
+/* If you want to adjust the sun's appearance when hovered in dark mode */
+#themeToggle.dark-mode:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
 }
 
 /* Top Button */
