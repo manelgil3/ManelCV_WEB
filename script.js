@@ -80,7 +80,7 @@ document.getElementById('themeToggle').addEventListener('click', function() {
     if (body.classList.contains('light-mode')) {
         body.classList.replace('light-mode', 'dark-mode');
         btn.classList.replace('light-mode', 'dark-mode');
-        btn.innerHTML = '<i class="fas fa-sun" style='font-size: 24 px;"></i>'; 
+        btn.innerHTML = '<i class="fas fa-sun"></i>'; 
     } else {
         body.classList.replace('dark-mode', 'light-mode');
         btn.classList.replace('dark-mode', 'light-mode');
