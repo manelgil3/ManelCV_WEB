@@ -314,6 +314,17 @@ section {
     color: #999; /* Darker gray for the title in dark mode */
 }
 
+/* publications section improvements */
+#education h3 {
+    color: #00610e; /* Darker green for the title in light mode */
+    font-weight: 600; /* Making it slightly bold */
+    margin-bottom: 5px; /* Space between company name and date */
+}
+
+.dark-mode #education h3 {
+    color: #999; /* Darker gray for the title in dark mode */
+}
+
 /* skills section improvements */
 #skills h3 {
     color: #00610e; /* Darker green for the title in light mode */
