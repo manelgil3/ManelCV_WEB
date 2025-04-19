@@ -267,3 +267,21 @@ footer {
   background: #12f7ff;
   color: black;
 }
+
+.molecule-img {
+  width: 70px;
+  height: auto;
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  z-index: 1;
+  opacity: 0.9;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
