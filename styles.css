@@ -267,3 +267,19 @@ footer {
   background: #12f7ff;
   color: black;
 }
+
+.glitch-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #0aff0a; /* Matrix green */
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px #0aff0a, 0 0 10px #0aff0a, 0 0 20px #007700;
+  animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; text-shadow: 0 0 5px #0aff0a; }
+  50% { opacity: 0.85; text-shadow: 0 0 15px #0aff0a, 0 0 20px #007700; }
+  100% { opacity: 1; text-shadow: 0 0 8px #0aff0a, 0 0 25px #00ff00; }
+}
