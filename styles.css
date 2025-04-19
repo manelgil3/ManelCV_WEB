@@ -84,14 +84,27 @@ header {
   color: #065f14; /* Dark green for light mode */
   letter-spacing: 2px;
   text-shadow: 0 0 5px #90ee90, 0 0 10px #90ee90, 0 0 20px #065f14;
-  animation: flicker 1.5s infinite alternate;
+  animation: flickerGreen 1.5s infinite alternate;
 }
 
-@keyframes flicker {
+.dark-mode .glitch-title {
+  color: #00bfff; /* Deep blue */
+  text-shadow: 0 0 5px #00bfff, 0 0 15px #1e90ff, 0 0 25px #1e90ff;
+  animation: flickerBlue 1.5s infinite alternate;
+}
+
+@keyframes flickerGreen {
   0%   { opacity: 1; text-shadow: 0 0 5px #90ee90; }
   50%  { opacity: 0.85; text-shadow: 0 0 15px #90ee90, 0 0 20px #065f14; }
   100% { opacity: 1; text-shadow: 0 0 8px #90ee90, 0 0 25px #065f14; }
 }
+
+@keyframes flickerBlue {
+  0%   { opacity: 1; text-shadow: 0 0 5px #00bfff; }
+  50%  { opacity: 0.85; text-shadow: 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
+  100% { opacity: 1; text-shadow: 0 0 8px #00bfff, 0 0 25px #1e90ff; }
+}
+
 
 
 /* === SOCIAL BUTTONS === */
@@ -122,6 +135,22 @@ header {
 .cv-btn:hover {
   background-color: #e3fce3;
 }
+
+.dark-mode .linkedin-btn,
+.dark-mode .github-btn,
+.dark-mode .cv-btn {
+  background-color: transparent;
+  color: #00bfff;
+  border-color: #00bfff;
+  text-shadow: 0 0 3px #00bfff;
+}
+
+.dark-mode .linkedin-btn:hover,
+.dark-mode .github-btn:hover,
+.dark-mode .cv-btn:hover {
+  background-color: rgba(0, 191, 255, 0.1);
+}
+
 
 
 /* === NAVBAR === */
