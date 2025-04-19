@@ -86,9 +86,9 @@ header {
   font-family: 'Orbitron', sans-serif;
   font-size: 2.8rem;
   font-weight: 700;
-  color: #065f14; /* Dark green for light mode */
+  color: #007acc; /* Dark green for light mode */
   letter-spacing: 2px;
-  text-shadow: 0 0 5px #90ee90, 0 0 10px #90ee90, 0 0 20px #065f14;
+  text-shadow: 0 0 5px #90ee90, 0 0 10px #90ee90, 0 0 20px #007acc;
   animation: flickerGreen 1.5s infinite alternate;
 }
 
@@ -100,8 +100,8 @@ header {
 
 @keyframes flickerGreen {
   0%   { opacity: 1; text-shadow: 0 0 5px #90ee90; }
-  50%  { opacity: 0.85; text-shadow: 0 0 15px #90ee90, 0 0 20px #065f14; }
-  100% { opacity: 1; text-shadow: 0 0 8px #90ee90, 0 0 25px #065f14; }
+  50%  { opacity: 0.85; text-shadow: 0 0 15px #90ee90, 0 0 20px #007acc; }
+  100% { opacity: 1; text-shadow: 0 0 8px #90ee90, 0 0 25px #007acc; }
 }
 
 @keyframes flickerBlue {
@@ -124,8 +124,8 @@ header {
 /* Light mode (default) */
 .linkedin-btn, .github-btn, .cv-btn {
   background-color: transparent;
-  color: var(--deep-green);
-  border: 1px solid var(--deep-green);
+  color: var(--deep-blue);
+  border: 1px solid var(--deep-blue);
   padding: 10px 15px;
   border-radius: 25px;
   text-align: center;
@@ -134,7 +134,7 @@ header {
   text-decoration: none;
   font-weight: 600;
   box-shadow: 0 0 8px rgba(6, 95, 20, 0.3);
-  text-shadow: 0 0 4px var(--deep-green);
+  text-shadow: 0 0 4px var(--deep-blue);
 }
 
 .linkedin-btn:hover,
@@ -318,7 +318,7 @@ footer {
 
 :root {
   --matrix-green: #0aff0a;
-  --deep-green: #065f14; /* same as title */
+  --deep-blue: #007acc; /* same as title */
 }
 
 .dark-mode .linkedin-btn:hover,
@@ -353,7 +353,7 @@ section h2 {
 
 section h3 {
   font-size: 1.4rem;
-  color: #065f14;
+  color: #007acc;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
 }
