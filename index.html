@@ -2,181 +2,148 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manel Gil Sorribes | CV</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manel Gil Sorribes | AI Engineer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 </head>
 
 <body class="light-mode">
-    <!-- Header section with your name, title, and contacts -->
-    <header>
-        <!-- Profile section containing image and user details -->
-        <div class="profile-section">
-            <img src="https://raw.githubusercontent.com/manelgil3/ManelCV_WEB/main/manel.jpg" alt="Manel Gil Sorribes" id="profilePic">
-            <div class="info-section">
-                <h1 class="first-name">MANEL GIL SORRIBES</h1>
-                <p>Physicist | AI & ML Master’s Graduate</p>
-                <p>man***@gmail.com | Barcelona, Spain</p>
-            </div>
-        </div>
-        
-        <!-- Social media buttons -->
-        <div class="social-section">
+  <header>
+    <div class="profile-container">
+      <div class="info-block">
+        <img src="https://raw.githubusercontent.com/manelgil3/ManelCV_WEB/main/manel.jpg" alt="Manel Gil Sorribes" id="profilePic" />
+        <div class="info-text">
+          <h1>MANEL GIL SORRIBES</h1>
+          <p>AI Engineer @ Nostrum Biodiscovery</p>
+          <p>manelgiso@gmail.com | Barcelona, Spain</p>
+          <div class="social-section">
             <a href="https://www.linkedin.com/in/manel-gil-sorribes/" target="_blank" class="linkedin-btn">
-                <i class="fab fa-linkedin"></i> LinkedIn
+              <i class="fab fa-linkedin"></i> LinkedIn
             </a>
             <a href="https://github.com/manelgil3" target="_blank" class="github-btn">
-                <i class="fab fa-github"></i> GitHub
+              <i class="fab fa-github"></i> GitHub
             </a>
+          </div>
         </div>
-    </header>
+      </div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Molecular_Model_of_Methane.png/300px-Molecular_Model_of_Methane.png" alt="Molecule" class="hero-img" />
+    </div>
+  </header>
 
+  <nav id="navbar">
+    <a href="#statement" class="section-btn">About</a>
+    <a href="#education" class="section-btn">Education</a>
+    <a href="#experience" class="section-btn">Experience</a>
+    <a href="#publications" class="section-btn">Publications</a>
+    <a href="#skills" class="section-btn">Skills</a>
+    <a href="#certificates" class="section-btn">Certificates</a>
+    <a href="#iclr" class="section-btn">ICLR 2025</a>
+  </nav>
 
-    <nav id="navbar">
-        <a href="#personalStatement" class="section-btn">Personal Statement</a>
-        <a href="#education" class="section-btn">Education</a>
-        <a href="#publications" class="section-btn">Publications</a>
-        <a href="#workExperience" class="section-btn">Work Experience</a>
-        <a href="#skills" class="section-btn">Skills</a>
-        <a href="#certificates" class="section-btn">Certificates</a>
-    </nav>
-
-    <!-- Personal Statement section -->
-    <section id="personalStatement">
-        <h2>PERSONAL STATEMENT</h2>
-        <p>With an interdisciplinary academic background, I completed my
-        physics degree at the Universitat de Barcelona and pursued a
-        Master’s in Intelligent Interactive Systems at Universitat Pompeu
-        Fabra.
-        My professional experience spans various roles in business intelligence,
-        data analysis, and machine learning, allowing me to
-        develop my technical skills, teamwork, and adaptability. I am
-        keen on leveraging my unique blend of skills and experiences to
-        make a positive impact in the field of artificial intelligence, while
-        remaining open to new challenges and opportunities.</p>
+  <main class="content-wrapper">
+    <section id="statement" class="fade-in">
+      <h2>About Me</h2>
+      <p>I’m an AI Engineer and Physicist with deep expertise in Deep Learning, Transformers, and Generative AI. At Nostrum Biodiscovery, I design state-of-the-art models for biomolecular interaction prediction, while my past experience at the European Joint Research Centre focused on sequence classification for genomics. I'm passionate about cross-disciplinary research and pushing the boundaries of AI.</p>
     </section>
 
-    <!-- Education section -->
-    <section id="education">
-        <h2>EDUCATION</h2>
+    <section id="education" class="fade-in">
+      <h2>Education</h2>
+      <div class="edu-entry">
         <h3>Master in Intelligent Interactive Systems</h3>
-        <p class="uni-name">Universitat Pompeu Fabra, 2023, Barcelona, Spain</p>
-        <p>Related courses: Machine Learning, Natural Language.</p>
-        <br>
-        <h3>Bachelor in physics</h3>
-        <p class="uni-name">Universitat de Barcelona, 2020, Barcelona, Spain</p>
-        <p>Mention in theoretical physics.</p>
+        <p class="uni-name">Universitat Pompeu Fabra, 2023</p>
+        <p>Courses: Machine Learning, NLP, Deep Learning</p>
+      </div>
+      <div class="edu-entry">
+        <h3>Bachelor in Physics</h3>
+        <p class="uni-name">Universitat de Barcelona, 2020</p>
+        <p>Mention in Theoretical Physics</p>
+      </div>
     </section>
 
-    <section id="publications">
-        <h2>PUBLICATIONS</h2>
+    <section id="experience" class="fade-in">
+      <h2>Experience</h2>
+      <div class="experience-entry">
+        <h3>AI Engineer – Nostrum Biodiscovery</h3>
+        <p>Jan 2024 – Present</p>
         <ul>
-            <li>“Gut Microbiome Analysis for Health Assessment”,
-            my final master’s thesis project, accepted
-            for publication and presentation at the HCist
-            Conference, November 2023. This research
-            was conducted in collaboration with the Joint
-            Research Center (JRC), a leading European research
-            group.</li>
+          <li>Developing deep learning models for protein-ligand interaction prediction</li>
+          <li>Researching generative AI and transformers for biological systems</li>
         </ul>
+      </div>
+      <div class="experience-entry">
+        <h3>BI Consultant – Capgemini</h3>
+        <p>Mar 2022 – Dec 2023</p>
+        <ul>
+          <li>ETL design using PL/SQL, SAP, Informatica</li>
+          <li>Worked with major energy clients in data transformation</li>
+        </ul>
+      </div>
+      <div class="experience-entry">
+        <h3>ML Intern – JRC & UPF</h3>
+        <p>Apr 2023 – Jul 2023</p>
+        <ul>
+          <li>Worked on genomic sequence classification using DL</li>
+        </ul>
+      </div>
+      <div class="experience-entry">
+        <h3>Data Engineer – NTT Data</h3>
+        <p>Jun 2020 – Mar 2022</p>
+        <ul>
+          <li>Optimized BI workflows with Oracle → Salesforce pipelines</li>
+        </ul>
+      </div>
     </section>
 
-    <!-- Work Experience section -->
-    <section id="workExperience">
-        <h2>WORK EXPERIENCE</h2>
-        <div>
-            <h3>Business Intelligence Consultant</h3>
-            <p>Capgemini · Mar 2022 - present</p>
-            <ul>
-                <li>As a PowerCenter consultant, I am responsible for designing and
-                developing ETL process solutions that meet client requirements
-                for a major European energy company. My role includes collaborating
-                with stakeholders to understand their needs, devising and
-                implementing data integration strategies, and ensuring data quality
-                and consistency throughout the process.</li>
-                <li>The project utilizes a variety of technologies, including Oracle,
-                PL/SQL, PowerCenter, Informatica Cloud, and SAP, to effectively
-                manage and transform data from various sources into actionable
-                insights.</li>
-            </ul>
-        </div>
-        <br>
-        <div>
-            <h3>AI & ML Intern - Genomics Research</h3>
-            <p>European Joint Research Centre & Universitat Pompeu Fabra · April 2023 - July 2023</p>
-            <p>Engaged in a university scholarship program, actively contributing
-            to the application and evaluation of diverse machine learning
-            techniques for the classification of extensive biological data. The
-            focus of my work lies in the field of metagenomics, collaborating
-            with a European research group.</p>
-        </div>
-        <br>
-        <div>
-            <h3>BI Consultant | Solutions Analyst</h3>
-            <p>NTT Data · Jun 2020 - Mar 2022</p>
-            <p>Worked as an outsourcing consultant in the industry sector, focusing
-            on data management and integration.
-            Managed data integration from an Oracle DataWarehouse to
-            Salesforce using PowerCenter and Informatica Cloud technologies.</p>
-        </div>
+    <section id="publications" class="fade-in">
+      <h2>Publications</h2>
+      <ul>
+        <li><strong>HCist 2023</strong>: Gut Microbiome Analysis for Health Assessment</li>
+        <li><strong>ICML 2024</strong>: Topological Deep Learning Challenge (GRaM Workshop, to appear in PMLR)</li>
+      </ul>
     </section>
 
-    <!-- Personal skills section -->
-    <section id="skills">
-        <h2>PERSONAL SKILLS</h2>
-        <h3>Programming languages:</h3>
-        <ul>
-            <li>Advanced: Python (TensorFlow, SciPy, NumPy, Pandas), Fortran 77, Gnuplot</li>
-            <li>Intermediate: R, PLSQL, SQL</li>
-            <li>Beginner: Apex Salesforce, Matlab</li>
-        </ul>
-        <br>
-        <h3>Software:</h3>
-        <ul>
-            <li>Informatica PowerCenter</li>
-            <li>Informatica Cloud</li>
-            <li>Google Cloud</li>
-            <li>Salesforce: Sales Cloud</li>
-            <li>Microsoft Office</li>
-            <li>LaTeX</li>
-        </ul>
-        <br>
-        <h3>General Skills:</h3>
-        <ul>
-            <li>Good presentation skills</li>
-            <li>Works well in a team</li>
-            <li>Skilled with interpersonal relationships</li>
-            <li>Works accurately under pressure</li>
-            <li>Excellent organizational skills</li>
-            <li>Ability to learn fast and versatility</li>
-        </ul>
+    <section id="iclr" class="fade-in">
+      <h2>ICLR 2025 Highlights</h2>
+      <ul>
+        <li><strong>Tensor-DTI</strong>: Contrastive Learning for Biomolecular Interactions – LMRL & Biomolecular Design</li>
+        <li><strong>RNA Tokenization</strong>: Character-level Inductive Biases – AI4NA & LMRL</li>
+        <li><strong>DDI Prediction</strong>: Fingerprint Simplification of Complex Models – Biomolecular Design</li>
+      </ul>
     </section>
 
-    <!-- Certificates section -->
-    <section id="certificates">
-        <h2>CERTIFICATES</h2>
-        <ul>
-            <li>Google Cloud – Cloud Digital Leader</li>
-            <li>Informatica (IICS) – Cloud Data Integration Partner Bootcamp (Champion Certificate)</li>
-            <li>Informatica (IICS) – Cloud Data and Application Integration R38, Informatica Cloud Professional</li>
-            <li>Informatica (IICS) – Cloud Data Integration Implementation Practitioner</li>
-            <li>Informatica (IICS) – Cloud DataWarehouse & Data Lake Modernization</li>
-        </ul>
+    <section id="skills" class="fade-in">
+      <h2>Skills</h2>
+      <ul>
+        <li><strong>Deep Learning</strong>: PyTorch, TensorFlow, Transformers, Generative AI</li>
+        <li><strong>NLP</strong>: BERT, GPT-4, HuggingFace, Tokenization</li>
+        <li><strong>Cloud</strong>: GCP, AWS</li>
+        <li><strong>ETL & Data</strong>: SQL, PL/SQL, Informatica</li>
+        <li><strong>Languages</strong>: Spanish, Catalan, English (B2), Italian (basic)</li>
+      </ul>
     </section>
 
-    <footer>
-        <div id="currentYear"></div>
-        <p>All rights reserved.</p>
-    </footer>
+    <section id="certificates" class="fade-in">
+      <h2>Certificates</h2>
+      <ul>
+        <li>Google Cloud – Cloud Digital Leader</li>
+        <li>IICS – Cloud Data Integration Bootcamp</li>
+      </ul>
+    </section>
+  </main>
 
-    <!-- Back to top button -->
-    <button class="section-btn" id="topBtn" onclick="topFunction()">Top</button>
+  <footer>
+    <div id="currentYear"></div>
+    <p>Made with ❤️ by Manel & ChatGPT | Inspired by AI + Molecules</p>
+  </footer>
 
-    <button id="themeToggle" class="light-mode"><i class="fas fa-moon"></i></button>
-
+  <button class="section-btn" id="topBtn" onclick="topFunction()">Top</button>
+  <button id="themeToggle" class="light-mode"><i class="fas fa-moon"></i></button>
 </body>
 
 </html>
