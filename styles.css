@@ -332,12 +332,12 @@ footer {
   margin: auto;
   padding: 1rem;
   background-color: rgba(0,0,0,0.05);
-  border-left: 3px solid #0aff0a;
+  border-left: 3px solid #007acc;
   border-radius: 8px;
 }
 .dark-mode #statement p {
   background-color: rgba(255,255,255,0.05);
-  border-left: 3px solid #0aff0a;
+  border-left: 3px solid #007acc;
 }
 
 section h2 {
