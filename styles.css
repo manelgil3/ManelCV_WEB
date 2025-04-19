@@ -54,8 +54,8 @@ header {
 }
 
 #profilePic {
-  width: 120px; /* bigger image */
-  height: 120px;
+  width:2420px; /* bigger image */
+  height: 240px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 10px rgba(18, 247, 255, 0.8);
