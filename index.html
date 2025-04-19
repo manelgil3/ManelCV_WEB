@@ -2,24 +2,29 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manel Gil Sorribes | AI Engineer</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script src="script.js" defer></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 
 <body class="light-mode">
+  <!-- Loader animation -->
+  <div class="loader">LOADING AI POWER...</div>
+  
+  <!-- Particle background -->
+  <div id="particles-js"></div>
+
   <header>
     <div class="profile-container">
       <div class="info-block">
-        <img src="https://raw.githubusercontent.com/manelgil3/ManelCV_WEB/main/manel.jpg" alt="Manel Gil Sorribes" id="profilePic" />
+        <img src="https://raw.githubusercontent.com/manelgil3/ManelCV_WEB/main/manel.jpg" alt="Manel Gil Sorribes" id="profilePic">
         <div class="info-text">
-          <h1>MANEL GIL SORRIBES</h1>
+          <h1 class="glitch-title">MANEL GIL SORRIBES</h1>
           <p>AI Engineer @ Nostrum Biodiscovery</p>
           <p>manelgiso@gmail.com | Barcelona, Spain</p>
           <div class="social-section">
@@ -35,7 +40,7 @@
           </div>
         </div>
       </div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Molecular_Model_of_Methane.png/300px-Molecular_Model_of_Methane.png" alt="Molecule" class="hero-img floating" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Molecular_Model_of_Methane.png/300px-Molecular_Model_of_Methane.png" alt="Molecule" class="hero-img floating">
     </div>
   </header>
 
@@ -56,105 +61,25 @@
       <p>I’m an AI Engineer and Physicist with deep expertise in Deep Learning, Transformers, and Generative AI. At Nostrum Biodiscovery, I design state-of-the-art models for biomolecular interaction prediction, while my past experience at the European Joint Research Centre focused on sequence classification for genomics. I'm passionate about cross-disciplinary research and pushing the boundaries of AI.</p>
     </section>
 
-    <section id="education" class="fade-in">
-      <h2>Education</h2>
-      <div class="edu-entry">
-        <h3>Master in Intelligent Interactive Systems</h3>
-        <p class="uni-name">Universitat Pompeu Fabra, 2023</p>
-        <p>Courses: Machine Learning, NLP, Deep Learning</p>
-      </div>
-      <div class="edu-entry">
-        <h3>Bachelor in Physics</h3>
-        <p class="uni-name">Universitat de Barcelona, 2020</p>
-        <p>Mention in Theoretical Physics</p>
-      </div>
-    </section>
-
-    <section id="experience" class="fade-in">
-      <h2>Experience</h2>
-      <div class="experience-entry">
-        <h3>AI Engineer – Nostrum Biodiscovery</h3>
-        <p>Jan 2024 – Present</p>
-        <ul>
-          <li>Developing deep learning models for protein-ligand interaction prediction</li>
-          <li>Researching generative AI and transformers for biological systems</li>
-        </ul>
-      </div>
-      <div class="experience-entry">
-        <h3>BI Consultant – Capgemini</h3>
-        <p>Mar 2022 – Dec 2023</p>
-        <ul>
-          <li>ETL design using PL/SQL, SAP, Informatica</li>
-          <li>Worked with major energy clients in data transformation</li>
-        </ul>
-      </div>
-      <div class="experience-entry">
-        <h3>ML Intern – JRC & UPF</h3>
-        <p>Apr 2023 – Jul 2023</p>
-        <ul>
-          <li>Worked on genomic sequence classification using DL</li>
-        </ul>
-      </div>
-      <div class="experience-entry">
-        <h3>Data Engineer – NTT Data</h3>
-        <p>Jun 2020 – Mar 2022</p>
-        <ul>
-          <li>Optimized BI workflows with Oracle → Salesforce pipelines</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="publications" class="fade-in">
-      <h2>Publications</h2>
-      <ul>
-        <li><strong>HCist 2023</strong>: Gut Microbiome Analysis for Health Assessment</li>
-        <li><strong>ICML 2024</strong>: Topological Deep Learning Challenge (GRaM Workshop, to appear in PMLR)</li>
-      </ul>
-    </section>
-
-    <section id="iclr" class="fade-in">
-      <h2>ICLR 2025 Highlights</h2>
-      <ul>
-        <li><strong>Tensor-DTI</strong>: Contrastive Learning for Biomolecular Interactions – LMRL & Biomolecular Design</li>
-        <li><strong>RNA Tokenization</strong>: Character-level Inductive Biases – AI4NA & LMRL</li>
-        <li><strong>DDI Prediction</strong>: Fingerprint Simplification of Complex Models – Biomolecular Design</li>
-      </ul>
-    </section>
-
-    <section id="skills" class="fade-in">
-      <h2>Skills</h2>
-      <ul>
-        <li><strong>Deep Learning</strong>: PyTorch, TensorFlow, Transformers, Generative AI</li>
-        <li><strong>NLP</strong>: BERT, GPT-4, HuggingFace, Tokenization</li>
-        <li><strong>Cloud</strong>: GCP, AWS</li>
-        <li><strong>ETL & Data</strong>: SQL, PL/SQL, Informatica</li>
-        <li><strong>Languages</strong>: Spanish, Catalan, English (B2), Italian (basic)</li>
-      </ul>
-    </section>
-
-    <section id="certificates" class="fade-in">
-      <h2>Certificates</h2>
-      <ul>
-        <li>Google Cloud – Cloud Digital Leader</li>
-        <li>IICS – Cloud Data Integration Bootcamp</li>
-      </ul>
-    </section>
-
     <section id="projects" class="fade-in">
       <h2>Projects</h2>
+      <div class="lottie-container">
+        <iframe src="https://lottie.host/?file=b632ba77-10d3-4c68-a8f6-930e69c9bfea/a9JmXtYjJu.json"></iframe>
+        <p><em>AI meets molecules. Welcome to the frontier.</em></p>
+      </div>
       <div class="project-grid">
         <div class="project-card">
-          <img src="https://cdn-icons-png.flaticon.com/512/5974/5974637.png" alt="RNA AI" />
+          <img src="https://cdn-icons-png.flaticon.com/512/5974/5974637.png" alt="RNA AI">
           <h3>RNA Tokenization</h3>
           <p>Character-level tokenization for RNA foundational models presented at ICLR 2025.</p>
         </div>
         <div class="project-card">
-          <img src="https://cdn-icons-png.flaticon.com/512/3405/3405806.png" alt="DTI" />
+          <img src="https://cdn-icons-png.flaticon.com/512/3405/3405806.png" alt="DTI">
           <h3>Tensor-DTI</h3>
           <p>Contrastive learning architecture for predicting biomolecular interactions across proteins, ligands, and RNA.</p>
         </div>
         <div class="project-card">
-          <img src="https://cdn-icons-png.flaticon.com/512/4336/4336483.png" alt="DDI" />
+          <img src="https://cdn-icons-png.flaticon.com/512/4336/4336483.png" alt="DDI">
           <h3>DDI Simplification</h3>
           <p>Using molecular fingerprints to reduce overcomplexity in drug-drug interaction models.</p>
         </div>
@@ -169,6 +94,12 @@
 
   <button class="section-btn" id="topBtn" onclick="topFunction()">Top</button>
   <button id="themeToggle" class="light-mode"><i class="fas fa-moon"></i></button>
+
+  <script>
+    particlesJS.load('particles-js', 'https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/particles.json', function() {
+      console.log('particles.js config loaded');
+    });
+  </script>
 </body>
 
 </html>
