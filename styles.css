@@ -308,3 +308,19 @@ footer {
   color: var(--matrix-green);
   text-shadow: 0 0 8px var(--matrix-green), 0 0 20px #00ff00;
 }
+
+#statement p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  max-width: 850px;
+  margin: auto;
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.05);
+  border-left: 3px solid #0aff0a;
+  border-radius: 8px;
+}
+.dark-mode #statement p {
+  background-color: rgba(255,255,255,0.05);
+  border-left: 3px solid #0aff0a;
+}
+
