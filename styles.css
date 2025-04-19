@@ -39,18 +39,18 @@ body {
 /* === HEADER === */
 header {
   padding: 2rem 1rem;
-  text-align: center;
   position: relative;
   z-index: 1;
 }
 
 .profile-container {
   display: flex;
-  justify-content: flex-start; /* align image closer to name */
   align-items: center;
-  gap: 1.5rem; /* less space between image and text */
+  justify-content: center; /* center both name and image horizontally */
+  gap: 2rem;
   flex-wrap: wrap;
-  padding: 1rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 #profilePic {
