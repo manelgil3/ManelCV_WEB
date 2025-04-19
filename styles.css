@@ -14,7 +14,7 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  background: white;
+  background: #f4f4f4;
   color: #222;
   overflow-x: hidden;
   scroll-behavior: smooth;
