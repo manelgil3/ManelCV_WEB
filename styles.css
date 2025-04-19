@@ -117,9 +117,9 @@ header {
 }
 
 .linkedin-btn, .github-btn, .cv-btn {
-  background-color: #ffffff;
-  color: #065f14;
-  border: 1px solid #065f14;
+  background-color: transparent;
+  color: var(--matrix-green);
+  border: 1px solid var(--matrix-green);
   padding: 10px 15px;
   border-radius: 25px;
   text-align: center;
@@ -127,13 +127,14 @@ header {
   transition: background-color 0.3s ease;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+  text-shadow: 0 0 4px var(--matrix-green);
 }
 
 .linkedin-btn:hover,
 .github-btn:hover,
 .cv-btn:hover {
-  background-color: #e3fce3;
+  background-color: rgba(10, 255, 10, 0.1);
 }
 
 .dark-mode .linkedin-btn,
