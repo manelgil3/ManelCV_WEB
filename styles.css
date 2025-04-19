@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-padding-top: 100px; /* or height of your navbar */
+}
+
+
 body {
   font-family: 'Inter', sans-serif;
   background: white;
