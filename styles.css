@@ -1,425 +1,223 @@
-/* Importing Roboto Font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-/* Green Palette */
-:root {
-    --title-transparent-light: rgba(193, 209, 31, 0.6);  /* For the transparent title in light mode */
-    --header-footer-light: #3d860b;  /* For header and footer in light mode */
-    --button-color-light: #6ec007;  /* For buttons in light mode */
-    
-    --title-transparent-dark: rgba(85, 85, 85, 0.6);  /* For the transparent title in dark mode */
-    --header-footer-dark: #333;  /* For header and footer in dark mode */
-    --button-color-dark: #444;  /* For buttons in dark mode */
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-#themeToggle {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    z-index: 1000;
-    background-color: black;
-    color: white; /* Icon color */
-    border: none;
-    border-radius: 50%; /* Makes the button circular */
-    width: 40px; /* Set to your desired size */
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
-}
-
-/* If you want to adjust the moon's appearance when hovered */
-/* Light mode styles */
-body.light-mode {
-    background-color: white;
-    color: black;
-}
-
-#themeToggle.light-mode {
-    background-color: black;
-    color: white; 
-}
-
-#themeToggle.light-mode:hover {
-    background-color: rgba(0, 0, 0, 0.8); 
-}
-
-/* Dark mode styles */
-body.dark-mode {
-    background-color: black;
-    color: white;
-}
-
-#themeToggle.dark-mode {
-    background-color: white;
-    color: black; 
-}
-
-#themeToggle.dark-mode:hover {
-    background-color: rgba(255, 255, 255, 0.8); 
-}
-
-/* Other styles (not related to theming) */
-#themeToggle {
-    /* ... your styles ... */
-}
-
-
-/* Top Button */
-#topBtn {
-    position: fixed;   /* Fixed positioning to keep it in view */
-    bottom: 10px;      /* 10px from the bottom */
-    right: 10px;       /* 10px from the right */
-    z-index: 1000;     /* To ensure it's above other elements */
-}
-
-/* LinkedIn button styling */
-.linkedin-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background-color: #ffffff;
-    color: #0A66C2;
-    border: 1px solid #0A66C2;
-    padding: 10px 15px;
-    border-radius: 25px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    font-weight: 600;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.linkedin-btn:hover {
-    background-color: #e8f3ff;
-}
-
-.linkedin-btn i {
-    color: #0A66C2;
-}
-
-.dark-mode .linkedin-btn {
-    color: #0A66C2;
-}
-
-.linkedin-button i {
-    margin-right: 5px;
-}
-
-.github-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background-color: #ffffff;
-    color: #333;
-    border: 1px solid #333;
-    padding: 10px 15px;
-    border-radius: 25px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    font-weight: 600;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-left: 0;
-}
-
-.github-btn:hover {
-    background-color: #f6f6f6;
-}
-
-.github-btn i {
-    color: #333;
-}
-
-.dark-mode .github-btn {
-    color: #333;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 1px solid #ccc;
-}
-
-.profile-section {
-    display: flex;
-    align-items: center; /* Vertically aligns children in the center */
-    justify-content: center; /* Horizontally aligns children in the center */
-}
-
-.info-section {
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px;
-    margin-left: 40px;  /* Adjusted to move further to the right */
-}
-
-.info-section h2 {
-    margin-bottom: 5px; /* Reduce this value as desired */
-}
-
-.info-section p {
-    margin-top: 0; /* Ensure there's no top margin adding extra space */
-}
-
-
-.social-section {
-    display: flex;
-    gap: 10px;
-}
-
-.linkedin-btn, .github-btn {
-    vertical-align: middle;
-}
-
 
 body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    margin: 0 20px; /* Adding horizontal margin */
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  background-color: #fdfdfd;
+  color: #222;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 header, footer {
-    background-color: var(--header-footer-light);
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    margin-bottom: 2rem; /* Add space below header */
+  background-color: #0a192f;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
 
-h1, h2, h3 {
-    font-weight: bold; /* Bold titles */
-    margin-bottom: 1rem;
+/* Layout */
+.profile-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
 }
 
-h2 {
-    background-color: var(--title-transparent-light);
-    padding: 0.5rem;  /* Padding for the title */
-    display: block;  /* Takes up the entire line */
-    margin: 0;  /* Resetting any margins */
-}
-
-ul {
-    list-style-type: disc; /* Adds the classic bullet point to lists */
-    padding-left: 20px; /* Indentation for the list */
-}
-
-section {
-    margin-bottom: 20px; /* Space between sections */
+.info-block {
+  display: flex;
+  align-items: center;
 }
 
 #profilePic {
-    width: 150px;  
-    height: 150px; 
-    border-radius: 50%;
-    margin: 0; /* Resetting margins to ensure it's centered */
-    display: block;
-    object-fit: cover;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+  border: 2px solid #ddd;
 }
 
-/* Navbar */
-.navbar a {
-    float: left;
-    display: block;
-    color: #fff;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    background-color: var(--button-color-light);  /* Background color */
+.hero-img {
+  max-width: 300px;
+  height: auto;
+  margin-top: 1rem;
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    padding: 5px 10px;  /* Add some padding */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow for depth */
-    transition: background-color 0.3s;  /* Smooth transition for color changes */
+.social-section a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin-right: 8px;
+  color: #0a192f;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-.sticky + section {
-    padding-top: 60px;  /* height of the navbar */
+.social-section a:hover {
+  background: #e6f0ff;
+  border-color: #0077b5;
 }
 
-/* Dark Mode Adjustments */
-.dark-mode {
-    background-color: #202020;  /* A neutral dark gray */
+/* Nav */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0.8rem 0;
+  background-color: #0077b5;
 }
 
-.dark-mode header, .dark-mode footer {
-    background-color: var(--header-footer-dark);  /* Dark mode header and footer */
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 20px;
+  background: #0a66c2;
+  transition: background 0.3s;
 }
 
-.dark-mode a, .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode p {
-    color: #ffffff;  /* White text */
+nav a:hover {
+  background: #094a9e;
 }
 
-.dark-mode .navbar a:hover {
-    background: #505050;
+/* Sections */
+.content-wrapper {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.dark-mode h2 {
-    background-color: #555;  /* Dark gray for titles in dark mode */
+section {
+  margin-bottom: 3rem;
 }
 
-/* Work Experience section improvements in dark mode */
-.dark-mode #workExperience h3 {
-    color: #ffffff;  /* White text for the title in dark mode */
+h2 {
+  font-size: 1.8rem;
+  color: #0a66c2;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3rem;
 }
 
-.dark-mode #workExperience p:first-of-type {
-    color: #ffffff;  /* White text for the date in dark mode */
+h3 {
+  color: #444;
+  margin: 1rem 0 0.3rem;
 }
 
-
-/* Work Experience section improvements */
-#workExperience h3 {
-    color: #00610e; /* Darker green for the title in light mode */
-    font-weight: 600; /* Making it slightly bold */
-    margin-bottom: 5px; /* Space between company name and date */
+ul {
+  padding-left: 1.5rem;
 }
 
-#workExperience p:first-of-type {
-    font-weight: 600; /* Making the date bold */
-    color: #3d860b; /* Lighter green for the date in light mode */
-    margin-bottom: 10px; /* Space between date and the job description */
-}
-
-.dark-mode #workExperience h3 {
-    color: #999; /* Darker gray for the title in dark mode */
-}
-
-/* education section improvements */
-#education h3 {
-    color: #00610e; /* Darker green for the title in light mode */
-    font-weight: 600; /* Making it slightly bold */
-    margin-bottom: 5px; /* Space between company name and date */
+ul li {
+  margin-bottom: 0.5rem;
 }
 
 .uni-name {
-    font-weight: 600; /* Making the date bold */
-    color: #3d860b; /* Lighter green for the date in light mode */
-    margin-bottom: 10px; /* Space between date and the job description */
+  font-style: italic;
+  color: #0077b5;
 }
 
-
-.dark-mode #education h3 {
-    color: #999; /* Darker gray for the title in dark mode */
+/* Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.2s;
 }
 
-/* publications section improvements */
-#publications h3 {
-    color: #00610e; /* Darker green for the title in light mode */
-    font-weight: 600; /* Making it slightly bold */
-    margin-bottom: 5px; /* Space between company name and date */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.dark-mode #publications h3 {
-    color: #999; /* Darker gray for the title in dark mode */
+/* Theme toggle */
+#themeToggle {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 999;
+  background: black;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* skills section improvements */
-#skills h3 {
-    color: #00610e; /* Darker green for the title in light mode */
-    font-weight: 600; /* Making it slightly bold */
-    margin-bottom: 5px; /* Space between company name and date */
+#themeToggle:hover {
+  background: #333;
 }
 
-#skills p:first-of-type {
-    font-weight: 600; /* Making the date bold */
-    color: #3d860b; /* Lighter green for the date in light mode */
-    margin-bottom: 10px; /* Space between date and the job description */
+/* Top button */
+#topBtn {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  padding: 10px 18px;
+  background: #0a66c2;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.dark-mode #skills h3 {
-    color: #999; /* Darker gray for the title in dark mode */
+#topBtn:hover {
+  background: #094a9e;
 }
 
-.dark-mode li {
-    color: #ffffff;  /* White text for list items in dark mode */
+/* Dark mode */
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #f2f2f2;
 }
 
-.dark-mode #workExperience p:first-of-type {
-    color: #777; /* Lighter gray for the date in dark mode */
+.dark-mode nav {
+  background-color: #222;
 }
 
-/* General Button Styling */
-button, .navbar a {
-    border: none;
-    border-radius: 25px; /* Rounded corners */
-    padding: 10px 20px; /* Padding around text */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
-    font-weight: 600; /* Slightly bold font */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-    cursor: pointer;
+.dark-mode nav a {
+  background-color: #444;
 }
 
-/* Button Hover Effect */
-button:hover, .navbar a:hover {
-    background-color: #34a203; /* Lighter green on hover in light mode */
+.dark-mode nav a:hover {
+  background-color: #666;
 }
 
-.dark-mode button:hover, .dark-mode .navbar a:hover {
-    background-color: #555; /* Lighter gray on hover in dark mode */
+.dark-mode header, .dark-mode footer {
+  background-color: #111;
+  color: #fff;
 }
 
-/* For the dark mode button at the bottom of the page */
-.dark-mode-toggle {
-    background-color: var(--button-color-light);
-    color: #fff; /* White text in light mode */
-    margin-top: 20px; /* Space above the button */
-    display: inline-block; /* To apply padding and border-radius */
+.dark-mode .social-section a {
+  background-color: #222;
+  color: #eee;
+  border-color: #444;
 }
 
-.dark-mode-toggle:hover {
-    background-color: #985ba5; /* Lighter violet on hover in light mode */
-}
-
-.dark-mode .dark-mode-toggle {
-    background-color: var(--button-color-dark);
-    color: #e6e6e6; /* Light gray text in dark mode */
-}
-
-.dark-mode .dark-mode-toggle:hover {
-    background-color: #606060; /* Lighter gray on hover in dark mode */
-}
-
-/* Fancy Section Buttons */
-.section-btn {
-    display: inline-block;
-    background-color: var(--button-color-light);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.3s;
-    cursor: pointer;
-    text-decoration: none;
-    margin: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.section-btn:hover {
-    background-color: #985ba5; /* Lighter violet on hover in light mode */
-}
-
-.section-btn:active {
-    transform: scale(1);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.dark-mode .section-btn {
-    background-color: var(--button-color-dark);
-}
-
-.dark-mode .section-btn:hover {
-    background-color: #606060; /* Lighter gray on hover in dark mode */
+.dark-mode .social-section a:hover {
+  background-color: #333;
+  border-color: #666;
 }
