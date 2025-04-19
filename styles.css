@@ -283,3 +283,28 @@ footer {
   50% { opacity: 0.85; text-shadow: 0 0 15px #0aff0a, 0 0 20px #007700; }
   100% { opacity: 1; text-shadow: 0 0 8px #0aff0a, 0 0 25px #00ff00; }
 }
+
+
+:root {
+  --matrix-green: #0aff0a;
+}
+
+.dark-mode .linkedin-btn,
+.dark-mode .github-btn,
+.dark-mode .cv-btn {
+  background-color: transparent;
+  color: var(--matrix-green);
+  border-color: var(--matrix-green);
+  text-shadow: 0 0 3px var(--matrix-green);
+}
+
+.dark-mode .linkedin-btn:hover,
+.dark-mode .github-btn:hover,
+.dark-mode .cv-btn:hover {
+  background-color: rgba(10, 255, 10, 0.1);
+}
+
+.dark-mode .glitch-title {
+  color: var(--matrix-green);
+  text-shadow: 0 0 8px var(--matrix-green), 0 0 20px #00ff00;
+}
