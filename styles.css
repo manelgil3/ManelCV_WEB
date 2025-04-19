@@ -124,8 +124,8 @@ header {
 /* Light mode (default) */
 .linkedin-btn, .github-btn, .cv-btn {
   background-color: transparent;
-  color: var(--matrix-green);
-  border: 1px solid var(--matrix-green);
+  color: var(--deep-green);
+  border: 1px solid var(--deep-green);
   padding: 10px 15px;
   border-radius: 25px;
   text-align: center;
@@ -133,14 +133,14 @@ header {
   transition: background-color 0.3s ease;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
-  text-shadow: 0 0 4px var(--matrix-green);
+  box-shadow: 0 0 8px rgba(6, 95, 20, 0.3);
+  text-shadow: 0 0 4px var(--deep-green);
 }
 
 .linkedin-btn:hover,
 .github-btn:hover,
 .cv-btn:hover {
-  background-color: rgba(10, 255, 10, 0.1);
+  background-color: rgba(6, 95, 20, 0.1);
 }
 
 /* Dark mode override */
@@ -318,6 +318,7 @@ footer {
 
 :root {
   --matrix-green: #0aff0a;
+  --deep-green: #065f14; /* same as title */
 }
 
 .dark-mode .linkedin-btn:hover,
