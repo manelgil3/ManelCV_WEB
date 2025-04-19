@@ -134,7 +134,6 @@ header {
   text-decoration: none;
   font-weight: 600;
   box-shadow: 0 0 8px rgba(6, 95, 20, 0.3);
-  text-shadow: 0 0 4px var(--deep-blue);
 }
 
 .linkedin-btn:hover,
@@ -150,7 +149,6 @@ header {
   background-color: transparent;
   color: #00bfff;
   border: 1px solid #00bfff;
-  text-shadow: 0 0 4px #00bfff;
   box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
 }
 
