@@ -46,12 +46,21 @@ header {
 
 .profile-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* align image closer to name */
   align-items: center;
+  gap: 1.5rem; /* less space between image and text */
   flex-wrap: wrap;
   padding: 1rem 2rem;
-  gap: 2rem;
 }
+
+#profilePic {
+  width: 120px; /* bigger image */
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(18, 247, 255, 0.8);
+}
+
 
 .info-text {
   flex: 1;
@@ -60,14 +69,6 @@ header {
 
 .image-wrapper {
   flex-shrink: 0;
-}
-
-#profilePic {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 0 10px rgba(18, 247, 255, 0.8);
 }
 
 
