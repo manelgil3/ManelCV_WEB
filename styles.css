@@ -341,3 +341,44 @@ footer {
   border-left: 3px solid #0aff0a;
 }
 
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #12f7ff;
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+section h3 {
+  font-size: 1.4rem;
+  color: #065f14;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.dark-mode section h3 {
+  color: #00bfff;
+}
+
+.edu-sub {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+section p, section ul li {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+section ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+section ul li::marker {
+  color: #12f7ff;
+}
+
