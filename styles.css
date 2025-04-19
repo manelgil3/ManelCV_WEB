@@ -206,6 +206,8 @@ section {
   margin-bottom: 3rem;
   opacity: 0;
   animation: none;
+  max-width: 1000px;
+  margin: auto;
 }
 
 @keyframes fadeIn {
