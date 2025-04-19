@@ -63,7 +63,7 @@ header {
 
 
 .info-text {
-  flex: 1;
+  margin-right: 2rem;
   min-width: 250px;
 }
 
