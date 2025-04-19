@@ -79,15 +79,20 @@ header {
 
 .glitch-title {
   font-family: 'Orbitron', sans-serif;
-  font-size: 2.5rem;
-  color: #12f7ff;
-  animation: flicker 2s infinite alternate;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #065f14; /* Dark green for light mode */
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px #90ee90, 0 0 10px #90ee90, 0 0 20px #065f14;
+  animation: flicker 1.5s infinite alternate;
 }
 
 @keyframes flicker {
-  0% { text-shadow: 0 0 5px #12f7ff, 0 0 10px #12f7ff; }
-  100% { text-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
+  0%   { opacity: 1; text-shadow: 0 0 5px #90ee90; }
+  50%  { opacity: 0.85; text-shadow: 0 0 15px #90ee90, 0 0 20px #065f14; }
+  100% { opacity: 1; text-shadow: 0 0 8px #90ee90, 0 0 25px #065f14; }
 }
+
 
 /* === SOCIAL BUTTONS === */
 .social-section {
