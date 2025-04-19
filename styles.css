@@ -118,7 +118,7 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 2rem; /* <-- ADD THIS */
 }
 
 /* Light mode (default) */
