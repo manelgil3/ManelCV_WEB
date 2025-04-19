@@ -393,4 +393,16 @@ section ul li::marker {
   letter-spacing: 1px;
 }
 
+#projects h2 {
+  margin-bottom: 0.5rem;
+}
+
+#projects .lottie-container p {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #333;
+}
+
 
