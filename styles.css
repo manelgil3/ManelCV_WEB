@@ -116,6 +116,7 @@ header {
   margin-top: 1rem;
 }
 
+/* Light mode (default) */
 .linkedin-btn, .github-btn, .cv-btn {
   background-color: transparent;
   color: var(--matrix-green);
@@ -137,13 +138,15 @@ header {
   background-color: rgba(10, 255, 10, 0.1);
 }
 
+/* Dark mode override */
 .dark-mode .linkedin-btn,
 .dark-mode .github-btn,
 .dark-mode .cv-btn {
   background-color: transparent;
   color: #00bfff;
-  border-color: #00bfff;
-  text-shadow: 0 0 3px #00bfff;
+  border: 1px solid #00bfff;
+  text-shadow: 0 0 4px #00bfff;
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
 }
 
 .dark-mode .linkedin-btn:hover,
@@ -310,15 +313,6 @@ footer {
 
 :root {
   --matrix-green: #0aff0a;
-}
-
-.dark-mode .linkedin-btn,
-.dark-mode .github-btn,
-.dark-mode .cv-btn {
-  background-color: transparent;
-  color: var(--matrix-green);
-  border-color: var(--matrix-green);
-  text-shadow: 0 0 3px var(--matrix-green);
 }
 
 .dark-mode .linkedin-btn:hover,
