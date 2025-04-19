@@ -311,16 +311,28 @@ footer {
   font-family: 'Orbitron', sans-serif;
   font-size: 2.8rem;
   font-weight: 700;
-  color: #0aff0a; /* Matrix green */
+  color: #065f14; /* Dark green for light mode */
   letter-spacing: 2px;
-  text-shadow: 0 0 5px #0aff0a, 0 0 10px #0aff0a, 0 0 20px #007700;
-  animation: flicker 1.5s infinite alternate;
+  text-shadow: 0 0 5px #90ee90, 0 0 10px #90ee90, 0 0 20px #065f14;
+  animation: flickerGreen 1.5s infinite alternate;
 }
 
-@keyframes flicker {
-  0% { opacity: 1; text-shadow: 0 0 5px #0aff0a; }
-  50% { opacity: 0.85; text-shadow: 0 0 15px #0aff0a, 0 0 20px #007700; }
-  100% { opacity: 1; text-shadow: 0 0 8px #0aff0a, 0 0 25px #00ff00; }
+.dark-mode .glitch-title {
+  color: #00bfff; /* Blue for dark mode */
+  text-shadow: 0 0 5px #00bfff, 0 0 15px #1e90ff, 0 0 25px #1e90ff;
+  animation: flickerBlue 1.5s infinite alternate;
+}
+
+@keyframes flickerGreen {
+  0%   { opacity: 1; text-shadow: 0 0 5px #90ee90; }
+  50%  { opacity: 0.85; text-shadow: 0 0 15px #90ee90, 0 0 20px #065f14; }
+  100% { opacity: 1; text-shadow: 0 0 8px #90ee90, 0 0 25px #065f14; }
+}
+
+@keyframes flickerBlue {
+  0%   { opacity: 1; text-shadow: 0 0 5px #00bfff; }
+  50%  { opacity: 0.85; text-shadow: 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
+  100% { opacity: 1; text-shadow: 0 0 8px #00bfff, 0 0 25px #1e90ff; }
 }
 
 
@@ -341,11 +353,6 @@ footer {
 .dark-mode .github-btn:hover,
 .dark-mode .cv-btn:hover {
   background-color: rgba(10, 255, 10, 0.1);
-}
-
-.dark-mode .glitch-title {
-  color: var(--matrix-green);
-  text-shadow: 0 0 8px var(--matrix-green), 0 0 20px #00ff00;
 }
 
 #statement p {
