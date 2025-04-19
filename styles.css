@@ -383,3 +383,14 @@ section ul li::marker {
   color: #12f7ff;
 }
 
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: inherit;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+
