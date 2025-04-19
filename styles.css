@@ -48,8 +48,8 @@ header {
 }
 
 #profilePic {
-  width: 120px;
-  height: 120px;
+  width: 80px;               /* SHRUNK to a sleek size */
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 0 10px rgba(18, 247, 255, 0.8);
@@ -57,7 +57,7 @@ header {
 }
 
 #profilePic:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);     /* Small zoom on hover */
 }
 
 
