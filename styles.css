@@ -104,20 +104,25 @@ header {
 }
 
 .linkedin-btn, .github-btn, .cv-btn {
-  background: transparent;
-  border: 2px solid #12f7ff;
-  color: #12f7ff;
-  padding: 0.5rem 1rem;
-  border-radius: 30px;
-  font-weight: bold;
+  background-color: #ffffff;
+  color: #065f14;
+  border: 1px solid #065f14;
+  padding: 10px 15px;
+  border-radius: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   text-decoration: none;
-  transition: 0.3s;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.linkedin-btn:hover, .github-btn:hover, .cv-btn:hover {
-  background: #12f7ff;
-  color: black;
+.linkedin-btn:hover,
+.github-btn:hover,
+.cv-btn:hover {
+  background-color: #e3fce3;
 }
+
 
 /* === NAVBAR === */
 #navbar {
