@@ -117,30 +117,33 @@
     let cells = Array(9).fill(null);
     let human = 'X';
     let ai = 'O';
-
+    let gameOver = false;
+  
     function createBoard() {
       board.innerHTML = '';
       cells.forEach((val, i) => {
         const div = document.createElement('div');
         div.classList.add('cell');
         div.textContent = val;
-        div.addEventListener('click', () => handleClick(i), { once: true });
+        if (!gameOver) {
+          div.addEventListener('click', () => handleClick(i), { once: true });
+        }
         board.appendChild(div);
       });
     }
-
+  
     function handleClick(index) {
-      if (!cells[index]) {
+      if (!cells[index] && !gameOver) {
         cells[index] = human;
         createBoard();
-        if (checkWinner(cells, human) || !cells.includes(null)) return;
+        if (checkEndGame()) return;
         const aiMove = getBestMove(cells);
         cells[aiMove] = ai;
         createBoard();
-        checkWinner(cells, ai);
+        checkEndGame();
       }
     }
-
+  
     function getBestMove(boardState) {
       let bestScore = -Infinity;
       let move;
@@ -157,12 +160,12 @@
       });
       return move;
     }
-
+  
     function minimax(boardState, depth, isMaximizing) {
       if (checkWinner(boardState, ai)) return 10 - depth;
       if (checkWinner(boardState, human)) return depth - 10;
       if (!boardState.includes(null)) return 0;
-
+  
       if (isMaximizing) {
         let best = -Infinity;
         boardState.forEach((cell, i) => {
@@ -185,7 +188,7 @@
         return best;
       }
     }
-
+  
     function checkWinner(b, player) {
       const winCombos = [
         [0,1,2], [3,4,5], [6,7,8],
@@ -194,13 +197,44 @@
       ];
       return winCombos.some(combo => combo.every(i => b[i] === player));
     }
-
+  
+    function checkEndGame() {
+      if (checkWinner(cells, human)) {
+        showMessage("You Win!");
+        return true;
+      }
+      if (checkWinner(cells, ai)) {
+        showMessage("You Lose!");
+        return true;
+      }
+      if (!cells.includes(null)) {
+        showMessage("It's a Tie!");
+        return true;
+      }
+      return false;
+    }
+  
+    function showMessage(msg) {
+      gameOver = true;
+      const message = document.createElement('div');
+      message.textContent = msg;
+      message.style.marginTop = "1rem";
+      message.style.fontSize = "1.5rem";
+      message.style.fontWeight = "bold";
+      message.style.color = "#007acc";
+      board.parentElement.appendChild(message);
+    }
+  
     function resetGame() {
       cells = Array(9).fill(null);
+      gameOver = false;
+      const oldMsg = board.parentElement.querySelector('div:last-child');
+      if (oldMsg && oldMsg.textContent.match(/Win|Lose|Tie/)) oldMsg.remove();
       createBoard();
     }
-
+  
     createBoard();
   </script>
+
 </body>
 </html>
