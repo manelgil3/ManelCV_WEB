@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic Tac Toe vs AI</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #1c1c1c;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 5px;
+    }
+    .cell {
+      width: 100px;
+      height: 100px;
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.5rem;
+      cursor: pointer;
+    }
+    .cell:hover {
+      background-color: #444;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #007acc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tic Tac Toe vs Unbeatable AI</h1>
+  <div class="board" id="board"></div>
+  <button onclick="resetGame()">Reset</button>
+
+  <script>
+    const board = document.getElementById('board');
+    let cells = Array(9).fill(null);
+    let human = 'X';
+    let ai = 'O';
+
+    function createBoard() {
+      board.innerHTML = '';
+      cells.forEach((val, i) => {
+        const div = document.createElement('div');
+        div.classList.add('cell');
+        div.textContent = val;
+        div.addEventListener('click', () => handleClick(i), { once: true });
+        board.appendChild(div);
+      });
+    }
+
+    function handleClick(index) {
+      if (!cells[index]) {
+        cells[index] = human;
+        createBoard();
+        if (!checkWinner(cells, human) && !cells.includes(null)) return;
+        const aiMove = getBestMove(cells);
+        cells[aiMove] = ai;
+        createBoard();
+        checkWinner(cells, ai);
+      }
+    }
+
+    function getBestMove(boardState) {
+      let bestScore = -Infinity;
+      let move;
+      boardState.forEach((cell, i) => {
+        if (cell === null) {
+          boardState[i] = ai;
+          let score = minimax(boardState, 0, false);
+          boardState[i] = null;
+          if (score > bestScore) {
+            bestScore = score;
+            move = i;
+          }
+        }
+      });
+      return move;
+    }
+
+    function minimax(boardState, depth, isMaximizing) {
+      if (checkWinner(boardState, ai)) return 10 - depth;
+      if (checkWinner(boardState, human)) return depth - 10;
+      if (!boardState.includes(null)) return 0;
+
+      if (isMaximizing) {
+        let best = -Infinity;
+        boardState.forEach((cell, i) => {
+          if (cell === null) {
+            boardState[i] = ai;
+            best = Math.max(best, minimax(boardState, depth + 1, false));
+            boardState[i] = null;
+          }
+        });
+        return best;
+      } else {
+        let best = Infinity;
+        boardState.forEach((cell, i) => {
+          if (cell === null) {
+            boardState[i] = human;
+            best = Math.min(best, minimax(boardState, depth + 1, true));
+            boardState[i] = null;
+          }
+        });
+        return best;
+      }
+    }
+
+    function checkWinner(b, player) {
+      const winCombos = [
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
+      ];
+      return winCombos.some(combo => combo.every(i => b[i] === player));
+    }
+
+    function resetGame() {
+      cells = Array(9).fill(null);
+      createBoard();
+    }
+
+    createBoard();
+  </script>
+</body>
+</html>
