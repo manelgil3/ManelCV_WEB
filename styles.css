@@ -123,7 +123,7 @@ header {
 }
 
 /* Light mode (default) */
-.linkedin-btn, .github-btn, .cv-btn {
+.linkedin-btn, .github-btn, .cv-btn, .tictactoe-btn {
   background-color: transparent;
   color: var(--deep-blue);
   border: 1px solid var(--deep-blue);
@@ -139,14 +139,16 @@ header {
 
 .linkedin-btn:hover,
 .github-btn:hover,
-.cv-btn:hover {
+.cv-btn:hover,
+.tictactoe-btn:hover {
   background-color: rgba(6, 95, 20, 0.1);
 }
 
 /* Dark mode override */
 .dark-mode .linkedin-btn,
 .dark-mode .github-btn,
-.dark-mode .cv-btn {
+.dark-mode .cv-btn,
+.dark-mode .tictactoe-btn {
   background-color: transparent;
   color: #00bfff;
   border: 1px solid #00bfff;
@@ -155,40 +157,10 @@ header {
 
 .dark-mode .linkedin-btn:hover,
 .dark-mode .github-btn:hover,
-.dark-mode .cv-btn:hover {
-  background-color: rgba(0, 191, 255, 0.1);
-}
-
-.tictactoe-btn {
-  background-color: transparent;
-  color: var(--deep-blue);
-  border: 1px solid var(--deep-blue);
-  padding: 10px 15px;
-  border-radius: 25px;
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 0 8px rgba(6, 95, 20, 0.3);
-  text-shadow: 0 0 4px var(--deep-blue);
-}
-
-.tictactoe-btn:hover {
-  background-color: rgba(6, 95, 20, 0.1);
-}
-
-.dark-mode .tictactoe-btn {
-  color: #00bfff;
-  border-color: #00bfff;
-  text-shadow: 0 0 4px #00bfff;
-  box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
-}
-
+.dark-mode .cv-btn:hover,
 .dark-mode .tictactoe-btn:hover {
   background-color: rgba(0, 191, 255, 0.1);
 }
-
 
 /* === NAVBAR === */
 #navbar {
