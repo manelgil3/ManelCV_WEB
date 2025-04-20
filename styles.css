@@ -159,6 +159,35 @@ header {
   background-color: rgba(0, 191, 255, 0.1);
 }
 
+.tictactoe-btn {
+  background-color: transparent;
+  color: var(--deep-blue);
+  border: 1px solid var(--deep-blue);
+  padding: 10px 15px;
+  border-radius: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 0 8px rgba(6, 95, 20, 0.3);
+  text-shadow: 0 0 4px var(--deep-blue);
+}
+
+.tictactoe-btn:hover {
+  background-color: rgba(6, 95, 20, 0.1);
+}
+
+.dark-mode .tictactoe-btn {
+  color: #00bfff;
+  border-color: #00bfff;
+  text-shadow: 0 0 4px #00bfff;
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
+}
+
+.dark-mode .tictactoe-btn:hover {
+  background-color: rgba(0, 191, 255, 0.1);
+}
 
 
 /* === NAVBAR === */
