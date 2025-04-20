@@ -3,54 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tic Tac Toe vs AI</title>
+  <title>Tic Tac Toe | Manel Gil Sorribes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
   <style>
     body {
-      font-family: sans-serif;
-      background-color: #1c1c1c;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 50px;
+      font-family: 'Inter', sans-serif;
+      background: #f4f4f4;
+      color: #222;
+      transition: background 0.5s, color 0.5s;
     }
+
+    .dark-mode {
+      background-color: #111;
+      color: #eee;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 5rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(18, 247, 255, 0.2);
+      text-align: center;
+    }
+
     h1 {
-      margin-bottom: 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.2rem;
+      color: #007acc;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 8px #90ee90;
     }
+
     .board {
       display: grid;
       grid-template-columns: repeat(3, 100px);
-      gap: 5px;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 2rem;
     }
+
     .cell {
       width: 100px;
       height: 100px;
-      background-color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background-color: #eee;
+      color: #000;
       font-size: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
       cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     .cell:hover {
-      background-color: #444;
+      background-color: #ddd;
     }
+
     button {
-      margin-top: 20px;
       padding: 10px 20px;
-      background: #007acc;
-      color: white;
-      border: none;
-      border-radius: 8px;
       font-weight: bold;
+      background-color: #007acc;
+      border: none;
+      color: white;
+      border-radius: 25px;
       cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,122,204,0.3);
+    }
+
+    button:hover {
+      background-color: #12f7ff;
+      color: #000;
+    }
+
+    .dark-mode main {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .dark-mode .cell {
+      background-color: #1e1e1e;
+      color: #fff;
+    }
+
+    .dark-mode .cell:hover {
+      background-color: #333;
+    }
+
+    .dark-mode button {
+      background-color: #00bfff;
+      color: #000;
+    }
+
+    .dark-mode button:hover {
+      background-color: #12f7ff;
     }
   </style>
 </head>
-<body>
-  <h1>Tic Tac Toe vs Unbeatable AI</h1>
-  <div class="board" id="board"></div>
-  <button onclick="resetGame()">Reset</button>
+<body class="light-mode">
+  <main>
+    <h1>Tic Tac Toe vs Unbeatable AI</h1>
+    <div class="board" id="board"></div>
+    <button onclick="resetGame()">Play Again</button>
+  </main>
 
   <script>
     const board = document.getElementById('board');
@@ -73,7 +133,7 @@
       if (!cells[index]) {
         cells[index] = human;
         createBoard();
-        if (!checkWinner(cells, human) && !cells.includes(null)) return;
+        if (checkWinner(cells, human) || !cells.includes(null)) return;
         const aiMove = getBestMove(cells);
         cells[aiMove] = ai;
         createBoard();
