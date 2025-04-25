@@ -70,7 +70,7 @@
     const ctx = canvas.getContext("2d");
 
     const monkeyImg = new Image();
-    monkeyImg.src = "monkey.png"; // put monkey.png in same folder
+    monkeyImg.src = "monkey.png"; // monkey.png must be in the same folder
 
     let player = {
       x: 70, y: 220, width: 50, height: 50,
@@ -112,15 +112,15 @@
     }
 
     function spawnObstacle() {
-      let lastX = obstacles.length ? obstacles[obstacles.length - 1].x : 0;
-      if (lastX < canvas.width - (200 + score / 2)) {
-        obstacles.push({
-          x: canvas.width,
-          y: 240,
-          width: 20 + Math.random() * 20,
-          height: 40
-        });
-      }
+      const height = 20 + Math.random() * 40; // height varies 20–60
+      const width = 20 + Math.random() * 20;
+      const y = canvas.height - 30 - height;
+      obstacles.push({
+        x: canvas.width + Math.random() * 80, // adds horizontal spacing variation
+        y: y,
+        width: width,
+        height: height
+      });
     }
 
     function spawnBird() {
@@ -142,13 +142,12 @@
       frameCount++;
       score++;
 
-      // SPEED UP at milestones
       if (score % 1000 === 0) gameSpeed += 1;
 
       // Spawn logic
       if (frameCount > nextObstacleFrame) {
         spawnObstacle();
-        nextObstacleFrame = frameCount + 60 + Math.random() * 60;
+        nextObstacleFrame = frameCount + 40 + Math.random() * 60;
       }
       if (frameCount % 230 === 0) spawnBird();
 
@@ -175,20 +174,22 @@
 
       // Obstacles
       for (let i = obstacles.length - 1; i >= 0; i--) {
-        obstacles[i].x -= gameSpeed;
+        const obs = obstacles[i];
+        obs.x -= gameSpeed;
         ctx.fillStyle = "#a1887f";
-        ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
-        if (checkCollision(player, obstacles[i])) return endGame();
-        if (obstacles[i].x + obstacles[i].width < 0) obstacles.splice(i, 1);
+        ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+        if (checkCollision(player, obs)) return endGame();
+        if (obs.x + obs.width < 0) obstacles.splice(i, 1);
       }
 
       // Birds
       for (let i = birds.length - 1; i >= 0; i--) {
-        birds[i].x -= gameSpeed + 2;
+        const b = birds[i];
+        b.x -= gameSpeed + 2;
         ctx.fillStyle = "#dddddd";
-        ctx.fillRect(birds[i].x, birds[i].y, birds[i].width, birds[i].height);
-        if (checkCollision(player, birds[i])) return endGame();
-        if (birds[i].x + birds[i].width < 0) birds.splice(i, 1);
+        ctx.fillRect(b.x, b.y, b.width, b.height);
+        if (checkCollision(player, b)) return endGame();
+        if (b.x + b.width < 0) birds.splice(i, 1);
       }
 
       ctx.fillStyle = "#fff";
@@ -250,7 +251,7 @@
     document.addEventListener("keyup", e => {
       if (e.code === "ArrowDown") player.ducking = false;
       if ((e.code === "Space" || e.code === "ArrowUp") && player.jumping && player.dy < -8) {
-        player.dy = -8; // Short jump if key is released early
+        player.dy = -8;
       }
     });
 
