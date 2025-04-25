@@ -5,205 +5,248 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Monkey Run 🐵</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #d4f1f9;
+      font-family: 'Arial', sans-serif;
+      background: #e0f7fa;
       overflow: hidden;
     }
 
     canvas {
       display: block;
       margin: 0 auto;
-      background: linear-gradient(to bottom, #87ceeb, #ffffff);
-      border-bottom: 5px solid #228b22;
+      background: #a7d7c5;
+      border: 2px solid #00796b;
     }
 
-    #scoreDisplay {
+    #startScreen, #gameOverScreen {
       position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 20px;
-      color: #333;
-      font-weight: bold;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      z-index: 2;
     }
 
-    #gameOver {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 40px;
-      color: #d62828;
-      font-weight: bold;
-      display: none;
-      text-align: center;
+    #startScreen input {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    #startScreen button, #gameOverScreen button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      background: #00796b;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
     }
 
     #leaderboard {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 16px;
-      color: #444;
-      text-align: right;
-      background: rgba(255, 255, 255, 0.6);
+      top: 10px; right: 10px;
+      background: rgba(255,255,255,0.8);
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      z-index: 1;
+    }
+
+    #leaderboard h3 {
+      margin-bottom: 5px;
+      font-size: 16px;
+      color: #00796b;
+    }
+
+    #leaderboard ol {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    #leaderboard li {
+      margin-bottom: 3px;
     }
   </style>
 </head>
 <body>
+  <div id="startScreen">
+    <h1>Monkey Run 🐵</h1>
+    <p>Enter your name to start:</p>
+    <input type="text" id="playerName" placeholder="Your name" />
+    <button onclick="startGame()">Start Game</button>
+  </div>
+
+  <div id="gameOverScreen" style="display:none;">
+    <h1>Game Over!</h1>
+    <p id="finalScore"></p>
+    <button onclick="restartGame()">Play Again</button>
+  </div>
+
+  <div id="leaderboard">
+    <h3>Top 5 Scores</h3>
+    <ol id="scoreList"></ol>
+  </div>
+
   <canvas id="gameCanvas" width="800" height="300"></canvas>
-  <div id="scoreDisplay">Score: 0</div>
-  <div id="leaderboard">Top 5 Scores:<br/><ul id="scoreList"></ul></div>
-  <div id="gameOver">GAME OVER<br>Press Enter to restart</div>
 
   <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
 
-    const monkeyImg = new Image();
-    monkeyImg.src = "https://cdn-icons-png.flaticon.com/512/616/616408.png"; // 🐵
-
-    const groundHeight = 40;
-    const gravity = 0.6;
-    const jumpForce = -12;
+    let gameInterval;
+    let gravity = 0.6;
     let isJumping = false;
-    let gameOver = false;
+    let isDucking = false;
+    let score = 0;
+    let obstacles = [];
+    let playerName = '';
+    let leaderboard = JSON.parse(localStorage.getItem('monkeyLeaderboard')) || [];
 
-    let monkey = {
+    const monkey = {
       x: 50,
-      y: canvas.height - groundHeight - 50,
+      y: 0,
       width: 50,
       height: 50,
-      dy: 0
+      yVelocity: 0,
+      color: '#8d6e63'
     };
 
-    let obstacles = [];
-    let score = 0;
-    let highScores = JSON.parse(localStorage.getItem("monkeyScores") || "[]");
-
-    function drawGround() {
-      ctx.fillStyle = "#228b22";
-      ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
-    }
-
     function drawMonkey() {
-      ctx.drawImage(monkeyImg, monkey.x, monkey.y, monkey.width, monkey.height);
+      ctx.fillStyle = monkey.color;
+      ctx.fillRect(monkey.x, monkey.y, monkey.width, monkey.height);
     }
 
     function drawObstacles() {
-      ctx.fillStyle = "#8b0000";
+      ctx.fillStyle = '#d32f2f';
       obstacles.forEach(obs => {
         ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
       });
     }
 
     function updateObstacles() {
-      if (Math.random() < 0.015) {
-        obstacles.push({
-          x: canvas.width,
-          y: canvas.height - groundHeight - 30,
-          width: 20 + Math.random() * 30,
-          height: 30
-        });
-      }
-
       obstacles.forEach(obs => {
-        obs.x -= 6;
+        obs.x -= 5;
       });
+
+      if (obstacles.length === 0 || obstacles[obstacles.length - 1].x < 500) {
+        const height = Math.random() > 0.5 ? 50 : 100;
+        const y = canvas.height - height;
+        obstacles.push({ x: canvas.width, y: y, width: 20, height: height });
+      }
 
       obstacles = obstacles.filter(obs => obs.x + obs.width > 0);
     }
 
     function checkCollision() {
-      return obstacles.some(obs =>
-        monkey.x < obs.x + obs.width &&
-        monkey.x + monkey.width > obs.x &&
-        monkey.y < obs.y + obs.height &&
-        monkey.y + monkey.height > obs.y
-      );
+      for (let obs of obstacles) {
+        if (
+          monkey.x < obs.x + obs.width &&
+          monkey.x + monkey.width > obs.x &&
+          monkey.y < obs.y + obs.height &&
+          monkey.y + monkey.height > obs.y
+        ) {
+          endGame();
+        }
+      }
     }
 
-    function update() {
+    function updateScore() {
+      score++;
+      if (score % 100 === 0) gravity += 0.1;
+    }
+
+    function drawScore() {
+      ctx.fillStyle = '#000';
+      ctx.font = '20px Arial';
+      ctx.fillText(`Score: ${score}`, 10, 20);
+    }
+
+    function gameLoop() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawGround();
 
-      // Monkey physics
-      monkey.dy += gravity;
-      monkey.y += monkey.dy;
+      monkey.height = isDucking ? 25 : 50;
+      monkey.y += monkey.yVelocity;
+      monkey.yVelocity += gravity;
 
-      if (monkey.y > canvas.height - groundHeight - monkey.height) {
-        monkey.y = canvas.height - groundHeight - monkey.height;
+      if (monkey.y + monkey.height >= canvas.height) {
+        monkey.y = canvas.height - monkey.height;
+        monkey.yVelocity = 0;
         isJumping = false;
       }
 
       drawMonkey();
       updateObstacles();
       drawObstacles();
+      checkCollision();
+      updateScore();
+      drawScore();
+    }
 
-      if (checkCollision()) {
-        endGame();
-        return;
-      }
-
-      score++;
-      document.getElementById("scoreDisplay").innerText = "Score: " + score;
-
-      requestAnimationFrame(update);
+    function startGame() {
+      const nameInput = document.getElementById('playerName');
+      playerName = nameInput.value.trim();
+      if (!playerName) return alert('Please enter your name.');
+      document.getElementById('startScreen').style.display = 'none';
+      score = 0;
+      gravity = 0.6;
+      obstacles = [];
+      updateLeaderboard();
+      gameInterval = setInterval(gameLoop, 1000 / 60);
     }
 
     function endGame() {
-      gameOver = true;
-      document.getElementById("gameOver").style.display = "block";
-      saveScore(score);
-      showScores();
+      clearInterval(gameInterval);
+      document.getElementById('finalScore').textContent = `${playerName}, your score: ${score}`;
+      document.getElementById('gameOverScreen').style.display = 'flex';
+      saveScore();
     }
 
-    function saveScore(newScore) {
-      highScores.push(newScore);
-      highScores.sort((a, b) => b - a);
-      highScores = highScores.slice(0, 5);
-      localStorage.setItem("monkeyScores", JSON.stringify(highScores));
+    function restartGame() {
+      document.getElementById('gameOverScreen').style.display = 'none';
+      score = 0;
+      obstacles = [];
+      isJumping = false;
+      isDucking = false;
+      monkey.y = 0;
+      startGame();
     }
 
-    function showScores() {
-      const scoreList = document.getElementById("scoreList");
-      scoreList.innerHTML = "";
-      highScores.forEach(score => {
-        const li = document.createElement("li");
-        li.textContent = score;
+    function saveScore() {
+      leaderboard.push({ name: playerName, score: score });
+      leaderboard.sort((a, b) => b.score - a.score);
+      leaderboard = leaderboard.slice(0, 5);
+      localStorage.setItem('monkeyLeaderboard', JSON.stringify(leaderboard));
+      updateLeaderboard();
+    }
+
+    function updateLeaderboard() {
+      const scoreList = document.getElementById('scoreList');
+      scoreList.innerHTML = '';
+      leaderboard.forEach(entry => {
+        const li = document.createElement('li');
+        li.textContent = `${entry.name}: ${entry.score}`;
         scoreList.appendChild(li);
       });
     }
 
-    document.addEventListener("keydown", (e) => {
-      if (e.code === "Space" && !isJumping && !gameOver) {
-        monkey.dy = jumpForce;
+    document.addEventListener('keydown', (e) => {
+      if ((e.code === 'Space' || e.code === 'ArrowUp') && !isJumping) {
+        monkey.yVelocity = -12;
         isJumping = true;
-      } else if (e.code === "Enter" && gameOver) {
-        resetGame();
       }
+      if (e.code === 'ArrowDown') isDucking = true;
     });
 
-    function resetGame() {
-      obstacles = [];
-      monkey.y = canvas.height - groundHeight - monkey.height;
-      monkey.dy = 0;
-      score = 0;
-      gameOver = false;
-      document.getElementById("gameOver").style.display = "none";
-      update();
-    }
-
-    showScores();
-    monkeyImg.onload = update;
+    document.addEventListener('keyup', (e) => {
+      if (e.code === 'ArrowDown') isDucking = false;
+    });
   </script>
 </body>
 </html>
