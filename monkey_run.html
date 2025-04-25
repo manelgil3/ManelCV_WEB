@@ -115,7 +115,7 @@
     function spawnObstacle() {
       const maxHeight = 50; // limit height so it's jumpable
       const height = 20 + Math.random() * maxHeight;
-      const width = 20 + Math.random() * 20;
+      const width = 10 + Math.random() * 20;
       const y = canvas.height - 30 - height;
       obstacles.push({
         x: canvas.width + Math.random() * 100,
