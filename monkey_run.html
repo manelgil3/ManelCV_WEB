@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Monkey Run 🐒</title>
+  <title>Monkey Run 🐵</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -46,12 +46,16 @@
       list-style: none;
       padding: 0;
     }
+    #restartBtn {
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div id="ui">
     <input id="playerName" placeholder="Enter your name..." />
     <button onclick="startGame()">Start Game</button>
+    <button id="restartBtn" onclick="startGame()">Restart Game</button>
   </div>
 
   <canvas id="gameCanvas" width="800" height="300"></canvas>
@@ -65,13 +69,18 @@
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
 
-    const monkeyColor = "#8B4513";
+    const monkeyImg = new Image();
+    monkeyImg.src = "monkey.png"; // make sure monkey.png is in the same folder
+
     const birdColor = "#dddddd";
     const groundColor = "#4e342e";
 
-    let player = { x: 70, y: 220, width: 50, height: 50, dy: 0, gravity: 1.2, jumpForce: 18, grounded: true, ducking: false };
-    let obstacles = [];
-    let birds = [];
+    let player = {
+      x: 70, y: 220, width: 50, height: 50,
+      dy: 0, gravity: 1.2, jumpForce: 18,
+      grounded: true, ducking: false
+    };
+    let obstacles = [], birds = [];
     let score = 0;
     let gameSpeed = 6;
     let gameOver = false;
@@ -83,6 +92,7 @@
       playerName = document.getElementById("playerName").value.trim();
       if (!playerName) return alert("Enter your name!");
       document.getElementById("ui").style.display = "none";
+      document.getElementById("restartBtn").style.display = "none";
       reset();
       requestAnimationFrame(update);
     }
@@ -91,6 +101,7 @@
       player.y = 220;
       player.dy = 0;
       player.grounded = true;
+      player.ducking = false;
       obstacles = [];
       birds = [];
       score = 0;
@@ -100,32 +111,36 @@
     }
 
     function spawnObstacle() {
-      obstacles.push({ x: canvas.width, y: 240, width: 20 + Math.random() * 20, height: 40 });
+      obstacles.push({
+        x: canvas.width,
+        y: 240,
+        width: 20 + Math.random() * 20,
+        height: 40
+      });
     }
 
     function spawnBird() {
-      birds.push({ x: canvas.width, y: 100 + Math.random() * 60, width: 40, height: 30 });
+      birds.push({
+        x: canvas.width,
+        y: 100 + Math.random() * 60,
+        width: 40,
+        height: 30
+      });
     }
 
     function update() {
       if (gameOver) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Background ground
       ctx.fillStyle = groundColor;
       ctx.fillRect(0, 270, canvas.width, 30);
 
       frameCount++;
 
-      // Increase difficulty
       if (frameCount % 1000 === 0) gameSpeed += 1;
-
-      // Spawn obstacles and birds
       if (frameCount % 90 === 0) spawnObstacle();
       if (frameCount % 230 === 0) spawnBird();
 
-      // Update and draw player
       if (!player.grounded) player.dy += player.gravity;
       player.y += player.dy;
 
@@ -135,40 +150,28 @@
         player.dy = 0;
       }
 
-      ctx.fillStyle = monkeyColor;
       if (player.ducking) {
-        ctx.fillRect(player.x, player.y + 20, player.width, player.height - 20);
+        ctx.drawImage(monkeyImg, player.x, player.y + 20, player.width, player.height - 20);
       } else {
-        ctx.fillRect(player.x, player.y, player.width, player.height);
+        ctx.drawImage(monkeyImg, player.x, player.y, player.width, player.height);
       }
 
-      // Update and draw obstacles
       for (let i = obstacles.length - 1; i >= 0; i--) {
         obstacles[i].x -= gameSpeed;
         ctx.fillStyle = "#a1887f";
         ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
-
-        if (checkCollision(player, obstacles[i])) {
-          endGame();
-          return;
-        }
+        if (checkCollision(player, obstacles[i])) return endGame();
         if (obstacles[i].x + obstacles[i].width < 0) obstacles.splice(i, 1);
       }
 
-      // Update and draw birds
       for (let i = birds.length - 1; i >= 0; i--) {
         birds[i].x -= gameSpeed + 2;
         ctx.fillStyle = birdColor;
         ctx.fillRect(birds[i].x, birds[i].y, birds[i].width, birds[i].height);
-
-        if (checkCollision(player, birds[i])) {
-          endGame();
-          return;
-        }
+        if (checkCollision(player, birds[i])) return endGame();
         if (birds[i].x + birds[i].width < 0) birds.splice(i, 1);
       }
 
-      // Score
       ctx.fillStyle = "#fff";
       ctx.font = "20px Arial";
       ctx.fillText("Score: " + score, 680, 30);
@@ -191,6 +194,8 @@
       gameOver = true;
       alert("Game Over, " + playerName + "! Your Score: " + score);
       saveScore(playerName, score);
+      document.getElementById("restartBtn").style.display = "inline-block";
+      document.getElementById("ui").style.display = "block";
     }
 
     function saveScore(name, score) {
