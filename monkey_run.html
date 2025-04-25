@@ -6,7 +6,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: linear-gradient(to top, #4e342e, #1b1b1b);
+      background: linear-gradient(to top, #87ceeb, #e0f7fa); /* Sky gradient */
       font-family: 'Arial', sans-serif;
       color: #fff;
       overflow: hidden;
@@ -15,7 +15,7 @@
       display: block;
       margin: 20px auto;
       border: 4px solid #00f7ff;
-      background: linear-gradient(to top, #6b4e3d 60%, #8d6e63 100%);
+      background: linear-gradient(to top, #a1887f 50%, #795548 100%);
     }
     #ui {
       text-align: center;
@@ -45,6 +45,7 @@
     #leaderboard ul {
       list-style: none;
       padding: 0;
+      color: #000;
     }
     #restartBtn {
       display: none;
@@ -70,7 +71,7 @@
     const ctx = canvas.getContext("2d");
 
     const monkeyImg = new Image();
-    monkeyImg.src = "monkey.png"; // monkey.png must be in the same folder
+    monkeyImg.src = "monkey.png"; // place monkey.png in same folder
 
     let player = {
       x: 70, y: 220, width: 50, height: 50,
@@ -112,11 +113,12 @@
     }
 
     function spawnObstacle() {
-      const height = 20 + Math.random() * 40; // height varies 20–60
+      const maxHeight = 50; // limit height so it's jumpable
+      const height = 20 + Math.random() * maxHeight;
       const width = 20 + Math.random() * 20;
       const y = canvas.height - 30 - height;
       obstacles.push({
-        x: canvas.width + Math.random() * 80, // adds horizontal spacing variation
+        x: canvas.width + Math.random() * 100,
         y: y,
         width: width,
         height: height
@@ -136,8 +138,13 @@
       if (gameOver) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Background hills (parallax)
+      ctx.fillStyle = "#81d4fa";
+      ctx.fillRect(0, 0, canvas.width, canvas.height - 30);
+
       ctx.fillStyle = "#4e342e";
-      ctx.fillRect(0, 270, canvas.width, 30);
+      ctx.fillRect(0, 270, canvas.width, 30); // Ground
 
       frameCount++;
       score++;
@@ -154,7 +161,7 @@
       // Physics
       if (!player.grounded) {
         player.dy += player.gravity;
-        if (player.ducking) player.dy += 1.5; // fast fall
+        if (player.ducking) player.dy += 1.5;
       }
       player.y += player.dy;
 
@@ -176,7 +183,7 @@
       for (let i = obstacles.length - 1; i >= 0; i--) {
         const obs = obstacles[i];
         obs.x -= gameSpeed;
-        ctx.fillStyle = "#a1887f";
+        ctx.fillStyle = "#8d6e63";
         ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
         if (checkCollision(player, obs)) return endGame();
         if (obs.x + obs.width < 0) obstacles.splice(i, 1);
@@ -186,13 +193,14 @@
       for (let i = birds.length - 1; i >= 0; i--) {
         const b = birds[i];
         b.x -= gameSpeed + 2;
-        ctx.fillStyle = "#dddddd";
+        ctx.fillStyle = "#eeeeee";
         ctx.fillRect(b.x, b.y, b.width, b.height);
         if (checkCollision(player, b)) return endGame();
         if (b.x + b.width < 0) birds.splice(i, 1);
       }
 
-      ctx.fillStyle = "#fff";
+      // Score
+      ctx.fillStyle = "#000";
       ctx.font = "20px Arial";
       ctx.fillText("Score: " + score, 680, 30);
       requestId = requestAnimationFrame(update);
