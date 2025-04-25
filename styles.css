@@ -123,7 +123,7 @@ header {
 }
 
 /* Light mode (default) */
-.linkedin-btn, .github-btn, .cv-btn, .tictactoe-btn {
+.linkedin-btn, .github-btn, .cv-btn, .tictactoe-btn, .monkeyBtn {
   background-color: transparent;
   color: var(--deep-blue);
   border: 1px solid var(--deep-blue);
@@ -140,7 +140,8 @@ header {
 .linkedin-btn:hover,
 .github-btn:hover,
 .cv-btn:hover,
-.tictactoe-btn:hover {
+.tictactoe-btn:hover,
+.monkeyBtn:hover{
   background-color: rgba(6, 95, 20, 0.1);
 }
 
@@ -148,7 +149,8 @@ header {
 .dark-mode .linkedin-btn,
 .dark-mode .github-btn,
 .dark-mode .cv-btn,
-.dark-mode .tictactoe-btn {
+.dark-mode .tictactoe-btn,
+.dark-mode .monkeyBtn{
   background-color: transparent;
   color: #00bfff;
   border: 1px solid #00bfff;
@@ -158,7 +160,8 @@ header {
 .dark-mode .linkedin-btn:hover,
 .dark-mode .github-btn:hover,
 .dark-mode .cv-btn:hover,
-.dark-mode .tictactoe-btn:hover {
+.dark-mode .tictactoe-btn:hover,
+.dark-mode .monkeyBtn:hover{
   background-color: rgba(0, 191, 255, 0.1);
 }
 
@@ -407,3 +410,4 @@ section ul li::marker {
   font-size: 1.1rem;
   color: #333;
 }
+
