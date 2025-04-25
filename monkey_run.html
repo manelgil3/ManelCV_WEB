@@ -2,38 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Monkey Run 🐵</title>
+  <title>Monkey Run 🐒</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: linear-gradient(to top, #333, #111);
+      background: linear-gradient(to top, #4e342e, #1b1b1b);
       font-family: 'Arial', sans-serif;
       color: #fff;
       overflow: hidden;
     }
     canvas {
       display: block;
-      margin: 30px auto;
+      margin: 20px auto;
       border: 4px solid #00f7ff;
-      background: url('ground.png') repeat-x bottom, linear-gradient(to top, #666, #222);
+      background: linear-gradient(to top, #6b4e3d 60%, #8d6e63 100%);
     }
     #ui {
       text-align: center;
       margin-top: 10px;
     }
-    input {
-      padding: 8px;
-      font-size: 16px;
-      margin: 5px;
-    }
-    button {
+    input, button {
       padding: 8px 15px;
       font-size: 16px;
+      margin: 5px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+    button {
+      background: #00f7ff;
+      color: #000;
+      font-weight: bold;
       cursor: pointer;
     }
     #leaderboard {
-      margin-top: 10px;
       text-align: center;
+      margin-top: 15px;
     }
     #leaderboard h3 {
       margin-bottom: 5px;
@@ -61,109 +65,132 @@
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
 
-    const monkeyImg = new Image();
-    monkeyImg.src = "monkey.png"; // add your monkey sprite here
-    const birdImg = new Image();
-    birdImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Fly_Silhouette.svg/64px-Fly_Silhouette.svg.png"; // sample flying enemy
+    const monkeyColor = "#8B4513";
+    const birdColor = "#dddddd";
+    const groundColor = "#4e342e";
 
-    let player = { x: 50, y: 220, width: 50, height: 60, dy: 0, jumping: false, ducking: false };
-    let groundEnemies = [];
-    let flyingEnemies = [];
+    let player = { x: 70, y: 220, width: 50, height: 50, dy: 0, gravity: 1.2, jumpForce: 18, grounded: true, ducking: false };
+    let obstacles = [];
+    let birds = [];
     let score = 0;
+    let gameSpeed = 6;
     let gameOver = false;
-    let name = '';
-    let gravity = 1.2;
-    let speed = 4;
-    let interval;
-    let frame = 0;
+    let frameCount = 0;
+    let playerName = '';
+    let requestId;
 
     function startGame() {
-      name = document.getElementById("playerName").value.trim();
-      if (!name) return alert("Enter your name!");
+      playerName = document.getElementById("playerName").value.trim();
+      if (!playerName) return alert("Enter your name!");
       document.getElementById("ui").style.display = "none";
       reset();
-      interval = requestAnimationFrame(update);
+      requestAnimationFrame(update);
     }
 
     function reset() {
-      score = 0;
-      frame = 0;
       player.y = 220;
       player.dy = 0;
-      groundEnemies = [];
-      flyingEnemies = [];
+      player.grounded = true;
+      obstacles = [];
+      birds = [];
+      score = 0;
+      frameCount = 0;
+      gameSpeed = 6;
       gameOver = false;
+    }
+
+    function spawnObstacle() {
+      obstacles.push({ x: canvas.width, y: 240, width: 20 + Math.random() * 20, height: 40 });
+    }
+
+    function spawnBird() {
+      birds.push({ x: canvas.width, y: 100 + Math.random() * 60, width: 40, height: 30 });
     }
 
     function update() {
       if (gameOver) return;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      frame++;
 
-      // Player physics
+      // Background ground
+      ctx.fillStyle = groundColor;
+      ctx.fillRect(0, 270, canvas.width, 30);
+
+      frameCount++;
+
+      // Increase difficulty
+      if (frameCount % 1000 === 0) gameSpeed += 1;
+
+      // Spawn obstacles and birds
+      if (frameCount % 90 === 0) spawnObstacle();
+      if (frameCount % 230 === 0) spawnBird();
+
+      // Update and draw player
+      if (!player.grounded) player.dy += player.gravity;
       player.y += player.dy;
-      if (player.y < 150) player.dy += gravity;
-      else {
+
+      if (player.y >= 220) {
         player.y = 220;
-        player.jumping = false;
+        player.grounded = true;
         player.dy = 0;
       }
 
-      // Draw monkey
-      ctx.drawImage(monkeyImg, player.x, player.y, player.width, player.height);
-
-      // Ground obstacle
-      if (frame % 90 === 0) {
-        const height = Math.random() < 0.5 ? 40 : 70;
-        groundEnemies.push({ x: canvas.width, y: 220 + (70 - height), width: 30, height });
+      ctx.fillStyle = monkeyColor;
+      if (player.ducking) {
+        ctx.fillRect(player.x, player.y + 20, player.width, player.height - 20);
+      } else {
+        ctx.fillRect(player.x, player.y, player.width, player.height);
       }
 
-      // Flying enemy
-      if (frame % 200 === 0) {
-        flyingEnemies.push({ x: canvas.width, y: 130 + Math.random() * 40, width: 40, height: 30 });
+      // Update and draw obstacles
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        obstacles[i].x -= gameSpeed;
+        ctx.fillStyle = "#a1887f";
+        ctx.fillRect(obstacles[i].x, obstacles[i].y, obstacles[i].width, obstacles[i].height);
+
+        if (checkCollision(player, obstacles[i])) {
+          endGame();
+          return;
+        }
+        if (obstacles[i].x + obstacles[i].width < 0) obstacles.splice(i, 1);
       }
 
-      // Move & draw ground enemies
-      groundEnemies.forEach((ob, i) => {
-        ob.x -= speed;
-        ctx.fillStyle = "#ff4444";
-        ctx.fillRect(ob.x, ob.y, ob.width, ob.height);
-        if (checkCollision(player, ob)) return endGame();
-      });
-      groundEnemies = groundEnemies.filter(ob => ob.x + ob.width > 0);
+      // Update and draw birds
+      for (let i = birds.length - 1; i >= 0; i--) {
+        birds[i].x -= gameSpeed + 2;
+        ctx.fillStyle = birdColor;
+        ctx.fillRect(birds[i].x, birds[i].y, birds[i].width, birds[i].height);
 
-      // Move & draw flying enemies
-      flyingEnemies.forEach((b, i) => {
-        b.x -= speed + 1;
-        ctx.drawImage(birdImg, b.x, b.y, b.width, b.height);
-        if (checkCollision(player, b)) return endGame();
-      });
-      flyingEnemies = flyingEnemies.filter(b => b.x + b.width > 0);
+        if (checkCollision(player, birds[i])) {
+          endGame();
+          return;
+        }
+        if (birds[i].x + birds[i].width < 0) birds.splice(i, 1);
+      }
 
       // Score
-      score++;
       ctx.fillStyle = "#fff";
       ctx.font = "20px Arial";
       ctx.fillText("Score: " + score, 680, 30);
+      score++;
 
-      requestAnimationFrame(update);
+      requestId = requestAnimationFrame(update);
     }
 
-    function checkCollision(p, e) {
+    function checkCollision(a, b) {
       return (
-        p.x < e.x + e.width &&
-        p.x + p.width > e.x &&
-        p.y < e.y + e.height &&
-        p.y + p.height > e.y
+        a.x < b.x + b.width &&
+        a.x + a.width > b.x &&
+        a.y < b.y + b.height &&
+        a.y + a.height > b.y
       );
     }
 
     function endGame() {
-      cancelAnimationFrame(interval);
+      cancelAnimationFrame(requestId);
       gameOver = true;
-      alert("Game Over, " + name + "! Score: " + score);
-      saveScore(name, score);
+      alert("Game Over, " + playerName + "! Your Score: " + score);
+      saveScore(playerName, score);
     }
 
     function saveScore(name, score) {
@@ -189,20 +216,18 @@
     document.addEventListener("keydown", e => {
       if (gameOver) return;
       if (e.code === "Space" || e.code === "ArrowUp") {
-        if (!player.jumping) {
-          player.dy = -18;
-          player.jumping = true;
+        if (player.grounded) {
+          player.dy = -player.jumpForce;
+          player.grounded = false;
         }
       }
       if (e.code === "ArrowDown") {
-        player.height = 40;
         player.ducking = true;
       }
     });
 
     document.addEventListener("keyup", e => {
       if (e.code === "ArrowDown") {
-        player.height = 60;
         player.ducking = false;
       }
     });
