@@ -49,6 +49,7 @@
     <input id="playerName" placeholder="Enter your name..." />
     <button onclick="startGame()">Start Game</button>
   </div>
+
   <canvas id="gameCanvas" width="800" height="300"></canvas>
 
   <div id="leaderboard">
@@ -56,21 +57,18 @@
     <ul id="scoreList"></ul>
   </div>
 
-  <!-- SOUND FILES -->
-  <audio id="bgMusic" src="bg_music.mp3" loop></audio>
-  <audio id="jumpSound" src="jump.mp3"></audio>
-  <audio id="duckSound" src="duck.mp3"></audio>
-  <audio id="hitSound" src="hit.mp3"></audio>
-
   <script>
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
 
     const monkeyImg = new Image();
-    monkeyImg.src = "monkey.png";
+    monkeyImg.src = "monkey.png"; // add your monkey sprite here
+    const birdImg = new Image();
+    birdImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Fly_Silhouette.svg/64px-Fly_Silhouette.svg.png"; // sample flying enemy
 
     let player = { x: 50, y: 220, width: 50, height: 60, dy: 0, jumping: false, ducking: false };
-    let obstacles = [];
+    let groundEnemies = [];
+    let flyingEnemies = [];
     let score = 0;
     let gameOver = false;
     let name = '';
@@ -79,16 +77,10 @@
     let interval;
     let frame = 0;
 
-    const bgMusic = document.getElementById("bgMusic");
-    const jumpSound = document.getElementById("jumpSound");
-    const duckSound = document.getElementById("duckSound");
-    const hitSound = document.getElementById("hitSound");
-
     function startGame() {
       name = document.getElementById("playerName").value.trim();
       if (!name) return alert("Enter your name!");
       document.getElementById("ui").style.display = "none";
-      bgMusic.play();
       reset();
       interval = requestAnimationFrame(update);
     }
@@ -98,7 +90,8 @@
       frame = 0;
       player.y = 220;
       player.dy = 0;
-      obstacles = [];
+      groundEnemies = [];
+      flyingEnemies = [];
       gameOver = false;
     }
 
@@ -108,7 +101,7 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       frame++;
 
-      // Move and draw monkey
+      // Player physics
       player.y += player.dy;
       if (player.y < 150) player.dy += gravity;
       else {
@@ -120,31 +113,33 @@
       // Draw monkey
       ctx.drawImage(monkeyImg, player.x, player.y, player.width, player.height);
 
-      // Obstacles
+      // Ground obstacle
       if (frame % 90 === 0) {
         const height = Math.random() < 0.5 ? 40 : 70;
-        obstacles.push({ x: canvas.width, y: 220 + (70 - height), width: 30, height });
+        groundEnemies.push({ x: canvas.width, y: 220 + (70 - height), width: 30, height });
       }
 
-      for (let i = 0; i < obstacles.length; i++) {
-        let ob = obstacles[i];
+      // Flying enemy
+      if (frame % 200 === 0) {
+        flyingEnemies.push({ x: canvas.width, y: 130 + Math.random() * 40, width: 40, height: 30 });
+      }
+
+      // Move & draw ground enemies
+      groundEnemies.forEach((ob, i) => {
         ob.x -= speed;
-        ctx.fillStyle = "#ff5555";
+        ctx.fillStyle = "#ff4444";
         ctx.fillRect(ob.x, ob.y, ob.width, ob.height);
+        if (checkCollision(player, ob)) return endGame();
+      });
+      groundEnemies = groundEnemies.filter(ob => ob.x + ob.width > 0);
 
-        // Collision
-        if (
-          player.x < ob.x + ob.width &&
-          player.x + player.width > ob.x &&
-          player.y < ob.y + ob.height &&
-          player.y + player.height > ob.y
-        ) {
-          endGame();
-          return;
-        }
-      }
-
-      obstacles = obstacles.filter(ob => ob.x + ob.width > 0);
+      // Move & draw flying enemies
+      flyingEnemies.forEach((b, i) => {
+        b.x -= speed + 1;
+        ctx.drawImage(birdImg, b.x, b.y, b.width, b.height);
+        if (checkCollision(player, b)) return endGame();
+      });
+      flyingEnemies = flyingEnemies.filter(b => b.x + b.width > 0);
 
       // Score
       score++;
@@ -155,12 +150,18 @@
       requestAnimationFrame(update);
     }
 
+    function checkCollision(p, e) {
+      return (
+        p.x < e.x + e.width &&
+        p.x + p.width > e.x &&
+        p.y < e.y + e.height &&
+        p.y + p.height > e.y
+      );
+    }
+
     function endGame() {
       cancelAnimationFrame(interval);
-      hitSound.play();
       gameOver = true;
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
       alert("Game Over, " + name + "! Score: " + score);
       saveScore(name, score);
     }
@@ -189,13 +190,11 @@
       if (gameOver) return;
       if (e.code === "Space" || e.code === "ArrowUp") {
         if (!player.jumping) {
-          jumpSound.play();
           player.dy = -18;
           player.jumping = true;
         }
       }
       if (e.code === "ArrowDown") {
-        duckSound.play();
         player.height = 40;
         player.ducking = true;
       }
