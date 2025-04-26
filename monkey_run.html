@@ -116,13 +116,14 @@
     }
 
     function spawnObstacle() {
-      const height = 30 + Math.random() * 35; // limit to ~55px height
+      const height = 30 + Math.random() * 35;
       const width = 20 + Math.random() * 20;
-      const y = canvas.height - 30 - height;
-      const safe = height <= player.jumpForce * 2; // make sure it's jumpable
+      const yOffset = Math.random() < 0.3 ? -10 : 0; // 30% small Y variation
+      const y = canvas.height - 30 - height + yOffset;
+      const safe = height <= player.jumpForce * 2;
       if (safe) {
         obstacles.push({
-          x: canvas.width + Math.random() * 100,
+          x: canvas.width + Math.random() * 50,
           y: y,
           width: width,
           height: height
@@ -142,7 +143,7 @@
       const lowFlight = Math.random() < 0.3;
       birds.push({
         x: canvas.width,
-        y: lowFlight ? 300 : 100 + Math.random() * 50, // low-flying at 200px y
+        y: lowFlight ? 220 : 100 + Math.random() * 50, // low-flying at 200px y
         width: 40,
         height: 30,
         lowFlight: lowFlight
@@ -167,14 +168,23 @@
 
       if (score % 1000 === 0) gameSpeed += 1;
 
+      // Spawn obstacles
       if (frameCount > nextObstacleFrame) {
         spawnObstacle();
-        // Sometimes spawn closer (20% chance)
-        const closer = Math.random() < 0.5 ? 20 + Math.random() * 20 : 40 + Math.random() * 60;
+        // Now 60% chance to spawn a second obstacle quickly after
+        if (Math.random() < 0.6) {
+          spawnObstacle();
+        }
+        const closer = Math.random() < 0.7 ? 30 + Math.random() * 30 : 50 + Math.random() * 70;
         nextObstacleFrame = frameCount + closer;
       }
       
-      if (frameCount % 230 === 0) spawnBird();
+      // Spawn birds more often
+      if (frameCount % 80 === 0) {
+        if (Math.random() < 0.5) {  // 50% chance to spawn bird every 80 frames
+          spawnBird();
+        }
+      }
 
       if (!player.grounded) {
         player.dy += player.gravity;
