@@ -168,16 +168,13 @@
 
       if (score % 1000 === 0) gameSpeed += 1;
 
-      // Spawn obstacles
       if (frameCount > nextObstacleFrame) {
         spawnObstacle();
-        // Now 60% chance to spawn a second obstacle quickly after
-        if (Math.random() < 0.6) {
-          spawnObstacle();
-        }
-        const closer = Math.random() < 0.7 ? 30 + Math.random() * 30 : 50 + Math.random() * 70;
+        const closer = Math.random() < 0.5 ? 20 + Math.random() * 20 : 40 + Math.random() * 60;
         nextObstacleFrame = frameCount + closer;
       }
+      
+      if (frameCount % 160 === 0) spawnBird();
       
       // Spawn birds more often
       if (frameCount % 80 === 0) {
