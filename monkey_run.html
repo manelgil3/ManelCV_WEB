@@ -133,17 +133,16 @@
 
     function spawnBird() {
       const lastObstacle = obstacles[obstacles.length - 1];
-    
-      // If recent obstacle blocks a jump, avoid spawning bird
+      
       if (lastObstacle && lastObstacle.x > canvas.width - 200 && lastObstacle.height > 40) {
         return;
       }
-    
-      // 30% of birds fly LOW (so you need to duck)
+      
       const lowFlight = Math.random() < 0.3;
+    
       birds.push({
         x: canvas.width,
-        y: lowFlight ? 200 : 150 + Math.random() * 50, // low-flying at 200px y
+        y: lowFlight ? 250 : 120 + Math.random() * 40,  // ✅ Low birds fly HIGHER than before (at ~250px)
         width: 40,
         height: 30,
         lowFlight: lowFlight
