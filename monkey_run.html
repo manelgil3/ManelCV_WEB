@@ -118,7 +118,6 @@
     function spawnObstacle() {
       const height = 30 + Math.random() * 35;
       const width = 20 + Math.random() * 20;
-      const yOffset = Math.random() < 0.3 ? -10 : 0; // 30% small Y variation
       const y = canvas.height - 30 - height + yOffset;
       const safe = height <= player.jumpForce * 2;
       if (safe) {
@@ -143,7 +142,7 @@
       const lowFlight = Math.random() < 0.3;
       birds.push({
         x: canvas.width,
-        y: lowFlight ? 220 : 100 + Math.random() * 50, // low-flying at 200px y
+        y: lowFlight ? 200 : 150 + Math.random() * 50, // low-flying at 200px y
         width: 40,
         height: 30,
         lowFlight: lowFlight
