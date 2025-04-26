@@ -131,6 +131,13 @@
     }
 
     function spawnBird() {
+      const lastObstacle = obstacles[obstacles.length - 1];
+    
+      // If there's a recent obstacle that would block a jump, skip spawning bird
+      if (lastObstacle && lastObstacle.x > canvas.width - 200 && lastObstacle.height > 40) {
+        return; // Don't spawn bird now
+      }
+    
       birds.push({
         x: canvas.width,
         y: 100 + Math.random() * 50,
