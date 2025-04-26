@@ -118,6 +118,7 @@
     function spawnObstacle() {
       const height = 30 + Math.random() * 35;
       const width = 20 + Math.random() * 20;
+      const yOffset = Math.random() < 0.3 ? -10 : 0; // 30% small Y variation
       const y = canvas.height - 30 - height + yOffset;
       const safe = height <= player.jumpForce * 2;
       if (safe) {
