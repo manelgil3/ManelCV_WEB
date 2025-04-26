@@ -6,7 +6,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: linear-gradient(to top, #87ceeb, #e0f7fa); /* Sky gradient */
+      background: linear-gradient(to top, #87ceeb, #e0f7fa);
       font-family: 'Arial', sans-serif;
       color: #fff;
       overflow: hidden;
@@ -71,7 +71,10 @@
     const ctx = canvas.getContext("2d");
 
     const monkeyImg = new Image();
-    monkeyImg.src = "monkey.png"; // place monkey.png in same folder
+    monkeyImg.src = "monkey.png"; // must exist in the same folder
+
+    const hawkImg = new Image();
+    hawkImg.src = "hawk.png"; // must exist in the same folder
 
     let player = {
       x: 70, y: 220, width: 50, height: 50,
@@ -113,22 +116,24 @@
     }
 
     function spawnObstacle() {
-      const maxHeight = 50; // limit height so it's jumpable
-      const height = 20 + Math.random() * maxHeight;
-      const width = 10 + Math.random() * 20;
+      const height = 20 + Math.random() * 35; // limit to ~55px height
+      const width = 20 + Math.random() * 20;
       const y = canvas.height - 30 - height;
-      obstacles.push({
-        x: canvas.width + Math.random() * 100,
-        y: y,
-        width: width,
-        height: height
-      });
+      const safe = height <= player.jumpForce * 2; // make sure it's jumpable
+      if (safe) {
+        obstacles.push({
+          x: canvas.width + Math.random() * 100,
+          y: y,
+          width: width,
+          height: height
+        });
+      }
     }
 
     function spawnBird() {
       birds.push({
         x: canvas.width,
-        y: 100 + Math.random() * 60,
+        y: 100 + Math.random() * 50,
         width: 40,
         height: 30
       });
@@ -139,26 +144,25 @@
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Background hills (parallax)
-      ctx.fillStyle = "#81d4fa";
+      // Sky
+      ctx.fillStyle = "#b3e5fc";
       ctx.fillRect(0, 0, canvas.width, canvas.height - 30);
 
+      // Ground
       ctx.fillStyle = "#4e342e";
-      ctx.fillRect(0, 270, canvas.width, 30); // Ground
+      ctx.fillRect(0, 270, canvas.width, 30);
 
       frameCount++;
       score++;
 
       if (score % 1000 === 0) gameSpeed += 1;
 
-      // Spawn logic
       if (frameCount > nextObstacleFrame) {
         spawnObstacle();
         nextObstacleFrame = frameCount + 40 + Math.random() * 60;
       }
       if (frameCount % 230 === 0) spawnBird();
 
-      // Physics
       if (!player.grounded) {
         player.dy += player.gravity;
         if (player.ducking) player.dy += 1.5;
@@ -172,7 +176,6 @@
         player.dy = 0;
       }
 
-      // Draw monkey
       if (player.ducking && player.grounded) {
         ctx.drawImage(monkeyImg, player.x, player.y + 20, player.width, player.height - 20);
       } else {
@@ -183,23 +186,21 @@
       for (let i = obstacles.length - 1; i >= 0; i--) {
         const obs = obstacles[i];
         obs.x -= gameSpeed;
-        ctx.fillStyle = "#8d6e63";
+        ctx.fillStyle = "#6d4c41";
         ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
         if (checkCollision(player, obs)) return endGame();
         if (obs.x + obs.width < 0) obstacles.splice(i, 1);
       }
 
-      // Birds
+      // Birds (hawk)
       for (let i = birds.length - 1; i >= 0; i--) {
         const b = birds[i];
         b.x -= gameSpeed + 2;
-        ctx.fillStyle = "#eeeeee";
-        ctx.fillRect(b.x, b.y, b.width, b.height);
+        ctx.drawImage(hawkImg, b.x, b.y, b.width, b.height);
         if (checkCollision(player, b)) return endGame();
         if (b.x + b.width < 0) birds.splice(i, 1);
       }
 
-      // Score
       ctx.fillStyle = "#000";
       ctx.font = "20px Arial";
       ctx.fillText("Score: " + score, 680, 30);
@@ -243,7 +244,6 @@
       });
     }
 
-    // Controls
     document.addEventListener("keydown", e => {
       if (gameOver) return;
       if ((e.code === "Space" || e.code === "ArrowUp") && player.grounded) {
