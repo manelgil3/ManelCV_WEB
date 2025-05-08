@@ -71,10 +71,10 @@
     const ctx = canvas.getContext("2d");
 
     const monkeyImg = new Image();
-    monkeyImg.src = "monkey.png"; // must exist in the same folder
+    monkeyImg.src = "monkey.png";
 
     const hawkImg = new Image();
-    hawkImg.src = "hawk.png"; // must exist in the same folder
+    hawkImg.src = "hawk.png";
 
     let player = {
       x: 70, y: 220, width: 50, height: 50,
@@ -89,6 +89,7 @@
     let playerName = '';
     let gameOver = false;
     let nextObstacleFrame = 0;
+    let birdSpawnInterval = 120;
     let requestId;
 
     function startGame() {
@@ -112,40 +113,30 @@
       frameCount = 0;
       gameSpeed = 6;
       nextObstacleFrame = 60;
+      birdSpawnInterval = 120;
       gameOver = false;
     }
 
     function spawnObstacle() {
       const height = 30 + Math.random() * 35;
       const width = 20 + Math.random() * 20;
-      const yOffset = Math.random() < 0.3 ? -10 : 0; // 30% small Y variation
+      const yOffset = Math.random() < 0.3 ? -10 : 0;
       const y = canvas.height - 30 - height + yOffset;
-      const safe = height <= player.jumpForce * 2;
-      if (safe) {
-        obstacles.push({
-          x: canvas.width + Math.random() * 50,
-          y: y,
-          width: width,
-          height: height
-        });
+      if (height <= player.jumpForce * 2) {
+        obstacles.push({ x: canvas.width + Math.random() * 40, y, width, height });
       }
     }
 
     function spawnBird() {
       const lastObstacle = obstacles[obstacles.length - 1];
-      
-      if (lastObstacle && lastObstacle.x > canvas.width - 200 && lastObstacle.height > 40) {
-        return;
-      }
-      
+      if (lastObstacle && lastObstacle.x > canvas.width - 180 && lastObstacle.height > 40) return;
+
       const lowFlight = Math.random() < 0.3;
-    
       birds.push({
         x: canvas.width,
-        y: lowFlight ? 250 : 120 + Math.random() * 40,  // ✅ Low birds fly HIGHER than before (at ~250px)
+        y: lowFlight ? 250 : 120 + Math.random() * 30,
         width: 40,
-        height: 30,
-        lowFlight: lowFlight
+        height: 30
       });
     }
 
@@ -154,34 +145,31 @@
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Sky
+      // Background
       ctx.fillStyle = "#b3e5fc";
       ctx.fillRect(0, 0, canvas.width, canvas.height - 30);
-
-      // Ground
       ctx.fillStyle = "#4e342e";
       ctx.fillRect(0, 270, canvas.width, 30);
 
       frameCount++;
       score++;
 
-      if (score % 1000 === 0) gameSpeed += 1;
+      // Difficulty Scaling
+      if (score % 500 === 0) {
+        gameSpeed += 0.5;
+        birdSpawnInterval = Math.max(60, birdSpawnInterval - 10); // Faster spawns, min 60
+      }
 
+      // Spawn logic
       if (frameCount > nextObstacleFrame) {
         spawnObstacle();
-        const closer = Math.random() < 0.5 ? 20 + Math.random() * 20 : 40 + Math.random() * 60;
+        const closer = Math.random() < 0.5 ? 20 + Math.random() * 20 : 40 + Math.random() * 50;
         nextObstacleFrame = frameCount + closer;
       }
-      
-      if (frameCount % 160 === 0) spawnBird();
-      
-      // Spawn birds more often
-      if (frameCount % 80 === 0) {
-        if (Math.random() < 0.5) {  // 50% chance to spawn bird every 80 frames
-          spawnBird();
-        }
-      }
 
+      if (frameCount % birdSpawnInterval === 0) spawnBird();
+
+      // Physics
       if (!player.grounded) {
         player.dy += player.gravity;
         if (player.ducking) player.dy += 1.5;
@@ -195,6 +183,7 @@
         player.dy = 0;
       }
 
+      // Draw player
       if (player.ducking && player.grounded) {
         ctx.drawImage(monkeyImg, player.x, player.y + 20, player.width, player.height - 20);
       } else {
@@ -211,7 +200,7 @@
         if (obs.x + obs.width < 0) obstacles.splice(i, 1);
       }
 
-      // Birds (hawk)
+      // Birds
       for (let i = birds.length - 1; i >= 0; i--) {
         const b = birds[i];
         b.x -= gameSpeed + 2;
@@ -220,6 +209,7 @@
         if (b.x + b.width < 0) birds.splice(i, 1);
       }
 
+      // Score
       ctx.fillStyle = "#000";
       ctx.font = "20px Arial";
       ctx.fillText("Score: " + score, 680, 30);
