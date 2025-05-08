@@ -129,16 +129,20 @@
 
     function spawnBird() {
       const lastObstacle = obstacles[obstacles.length - 1];
+      
+      // Avoid bird immediately after a tall obstacle (no trap)
       if (lastObstacle && lastObstacle.x > canvas.width - 180 && lastObstacle.height > 40) return;
-
-      const lowFlight = Math.random() < 0.3;
+    
+      const lowFlight = Math.random() < 0.5; // 50% low, 50% high
       birds.push({
         x: canvas.width,
-        y: lowFlight ? 250 : 120 + Math.random() * 30,
+        y: lowFlight ? 250 : 160 + Math.random() * 30, // duckable or jumpable
         width: 40,
-        height: 30
+        height: 30,
+        lowFlight: lowFlight
       });
     }
+
 
     function update() {
       if (gameOver) return;
@@ -157,7 +161,7 @@
       // Difficulty Scaling
       if (score % 500 === 0) {
         gameSpeed += 0.5;
-        birdSpawnInterval = Math.max(60, birdSpawnInterval - 10); // Faster spawns, min 60
+        birdSpawnInterval = Math.max(60, birdSpawnInterval - 5);
       }
 
       // Spawn logic
@@ -167,7 +171,9 @@
         nextObstacleFrame = frameCount + closer;
       }
 
-      if (frameCount % birdSpawnInterval === 0) spawnBird();
+      if (frameCount % birdSpawnInterval === 0 || Math.random() < 0.05) {
+        spawnBird();
+      }
 
       // Physics
       if (!player.grounded) {
