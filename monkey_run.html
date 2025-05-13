@@ -146,56 +146,57 @@
 
     function update() {
       if (gameOver) return;
-
+    
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+    
       // Background
       ctx.fillStyle = "#b3e5fc";
       ctx.fillRect(0, 0, canvas.width, canvas.height - 30);
       ctx.fillStyle = "#4e342e";
       ctx.fillRect(0, 270, canvas.width, 30);
-
+    
       frameCount++;
       score++;
-
+    
       // Difficulty Scaling
       if (score % 500 === 0) {
         gameSpeed += 0.5;
-        birdSpawnInterval = Math.max(60, birdSpawnInterval - 5);
+        birdSpawnInterval = Math.max(100, birdSpawnInterval - 5);   // 👈 MIN 100
       }
-
-      // Spawn logic
+    
+      // Spawn obstacle
       if (frameCount > nextObstacleFrame) {
         spawnObstacle();
         const closer = Math.random() < 0.5 ? 20 + Math.random() * 20 : 40 + Math.random() * 50;
         nextObstacleFrame = frameCount + closer;
       }
-
-      if (frameCount % birdSpawnInterval === 0 || Math.random() < 0.05) {
+    
+      // Spawn bird only at fixed intervals (NO random extra spawn)
+      if (frameCount % birdSpawnInterval === 0) {
         spawnBird();
       }
-
+    
       // Physics
       if (!player.grounded) {
         player.dy += player.gravity;
         if (player.ducking) player.dy += 1.5;
       }
       player.y += player.dy;
-
+    
       if (player.y >= 220) {
         player.y = 220;
         player.grounded = true;
         player.jumping = false;
         player.dy = 0;
       }
-
+    
       // Draw player
       if (player.ducking && player.grounded) {
         ctx.drawImage(monkeyImg, player.x, player.y + 20, player.width, player.height - 20);
       } else {
         ctx.drawImage(monkeyImg, player.x, player.y, player.width, player.height);
       }
-
+    
       // Obstacles
       for (let i = obstacles.length - 1; i >= 0; i--) {
         const obs = obstacles[i];
@@ -205,7 +206,7 @@
         if (checkCollision(player, obs)) return endGame();
         if (obs.x + obs.width < 0) obstacles.splice(i, 1);
       }
-
+    
       // Birds
       for (let i = birds.length - 1; i >= 0; i--) {
         const b = birds[i];
@@ -214,13 +215,14 @@
         if (checkCollision(player, b)) return endGame();
         if (b.x + b.width < 0) birds.splice(i, 1);
       }
-
+    
       // Score
       ctx.fillStyle = "#000";
       ctx.font = "20px Arial";
       ctx.fillText("Score: " + score, 680, 30);
       requestId = requestAnimationFrame(update);
     }
+
 
     function checkCollision(a, b) {
       return (
