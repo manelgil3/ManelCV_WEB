@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Monkey Run 🐵</title>
+  <title>Monkey Run 🐵 — Playable Edition</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -67,164 +67,113 @@
   </div>
 
   <script>
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
+    /******************
+     *  CONFIG
+     ******************/
+    const canvas   = document.getElementById("gameCanvas");
+    const ctx      = canvas.getContext("2d");
+    const groundY  = 270;          // y‑coordinate of ground top
 
     const monkeyImg = new Image();
-    monkeyImg.src = "monkey.png";
+    monkeyImg.src   = "monkey.png";
 
-    const hawkImg = new Image();
-    hawkImg.src = "hawk.png";
+    const hawkImg   = new Image();
+    hawkImg.src     = "hawk.png";
 
-    let player = {
-      x: 70, y: 220, width: 50, height: 50,
-      dy: 0, gravity: 1.2, jumpForce: 18,
-      grounded: true, ducking: false, jumping: false
+    /******************
+     *  PLAYER
+     ******************/
+    const player = {
+      x: 70,
+      y: 220,
+      width: 50,
+      height: 50,
+      standHeight: 50,
+      duckHeight: 30,
+      dy: 0,
+      gravity: 1.2,
+      jumpForce: 18,
+      grounded: true,
+      ducking: false,
+      jumping: false
     };
 
-    let obstacles = [], birds = [];
-    let score = 0;
-    let gameSpeed = 6;
-    let frameCount = 0;
-    let playerName = '';
-    let gameOver = false;
-    let nextObstacleFrame = 0;
-    let birdSpawnInterval = 120;
+    /******************
+     *  GAME STATE
+     ******************/
+    let obstacles          = [];
+    let birds              = [];
+    let score              = 0;
+    let gameSpeed          = 6;
+    let frameCount         = 0;
+    let playerName         = '';
+    let gameOver           = false;
+    let nextObstacleFrame  = 0;
+    let birdSpawnInterval  = 140; // start a little safer
     let requestId;
 
+    /******************
+     *  GAME LOOP
+     ******************/
     function startGame() {
       playerName = document.getElementById("playerName").value.trim();
       if (!playerName) return alert("Enter your name!");
-      document.getElementById("ui").style.display = "none";
+      document.getElementById("ui").style.display       = "none";
       document.getElementById("restartBtn").style.display = "none";
       reset();
-      requestAnimationFrame(update);
+      requestId = requestAnimationFrame(update);
     }
 
     function reset() {
-      player.y = 220;
+      obstacles = [];
+      birds     = [];
+      score     = 0;
+      frameCount= 0;
+      gameSpeed = 6;
+      player.y  = 220;
       player.dy = 0;
       player.grounded = true;
-      player.ducking = false;
-      player.jumping = false;
-      obstacles = [];
-      birds = [];
-      score = 0;
-      frameCount = 0;
-      gameSpeed = 6;
+      player.ducking  = false;
+      player.jumping  = false;
       nextObstacleFrame = 60;
-      birdSpawnInterval = 120;
-      gameOver = false;
+      birdSpawnInterval = 140;
+      gameOver  = false;
     }
 
+    /******************
+     *  SPAWNERS
+     ******************/
     function spawnObstacle() {
-      const height = 30 + Math.random() * 35;
-      const width = 20 + Math.random() * 20;
-      const yOffset = Math.random() < 0.3 ? -10 : 0;
-      const y = canvas.height - 30 - height + yOffset;
-      if (height <= player.jumpForce * 2) {
-        obstacles.push({ x: canvas.width + Math.random() * 40, y, width, height });
-      }
+      const height = 25 + Math.random() * 25; // 25 – 50 px
+      const width  = 20 + Math.random() * 20; // 20 – 40 px
+      const yOffset= Math.random() < 0.15 ? -8 : 0; // tiny variance
+      const y      = groundY - height + yOffset;
+
+      // only create obstacles that are jumpable
+      if (height <= player.jumpForce * 2)
+        obstacles.push({ x: canvas.width + 10, y, width, height });
     }
 
     function spawnBird() {
       const lastObstacle = obstacles[obstacles.length - 1];
-      
-      // Avoid bird immediately after a tall obstacle (no trap)
-      if (lastObstacle && lastObstacle.x > canvas.width - 180 && lastObstacle.height > 40) return;
-    
-      const lowFlight = Math.random() < 0.5; // 50% low, 50% high
+
+      // Don’t spawn a bird too close after a tall obstacle
+      if (lastObstacle && lastObstacle.x > canvas.width - 220 && lastObstacle.height > 35) return;
+
+      const lowFlight = Math.random() < 0.55; // slight bias to low (duckable)
       birds.push({
         x: canvas.width,
-        y: lowFlight ? 250 : 160 + Math.random() * 30, // duckable or jumpable
+        y: lowFlight ? 250 : 150 + Math.random() * 25, // low or high
         width: 40,
         height: 30,
-        lowFlight: lowFlight
+        lowFlight
       });
     }
 
-
-    function update() {
-      if (gameOver) return;
-    
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-      // Background
-      ctx.fillStyle = "#b3e5fc";
-      ctx.fillRect(0, 0, canvas.width, canvas.height - 30);
-      ctx.fillStyle = "#4e342e";
-      ctx.fillRect(0, 270, canvas.width, 30);
-    
-      frameCount++;
-      score++;
-    
-      // Difficulty Scaling
-      if (score % 500 === 0) {
-        gameSpeed += 0.5;
-        birdSpawnInterval = Math.max(100, birdSpawnInterval - 5);   // 👈 MIN 100
-      }
-    
-      // Spawn obstacle
-      if (frameCount > nextObstacleFrame) {
-        spawnObstacle();
-        const closer = Math.random() < 0.5 ? 20 + Math.random() * 20 : 40 + Math.random() * 50;
-        nextObstacleFrame = frameCount + closer;
-      }
-    
-      // Spawn bird only at fixed intervals (NO random extra spawn)
-      if (frameCount % birdSpawnInterval === 0) {
-        spawnBird();
-      }
-    
-      // Physics
-      if (!player.grounded) {
-        player.dy += player.gravity;
-        if (player.ducking) player.dy += 1.5;
-      }
-      player.y += player.dy;
-    
-      if (player.y >= 220) {
-        player.y = 220;
-        player.grounded = true;
-        player.jumping = false;
-        player.dy = 0;
-      }
-    
-      // Draw player
-      if (player.ducking && player.grounded) {
-        ctx.drawImage(monkeyImg, player.x, player.y + 20, player.width, player.height - 20);
-      } else {
-        ctx.drawImage(monkeyImg, player.x, player.y, player.width, player.height);
-      }
-    
-      // Obstacles
-      for (let i = obstacles.length - 1; i >= 0; i--) {
-        const obs = obstacles[i];
-        obs.x -= gameSpeed;
-        ctx.fillStyle = "#6d4c41";
-        ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
-        if (checkCollision(player, obs)) return endGame();
-        if (obs.x + obs.width < 0) obstacles.splice(i, 1);
-      }
-    
-      // Birds
-      for (let i = birds.length - 1; i >= 0; i--) {
-        const b = birds[i];
-        b.x -= gameSpeed + 2;
-        ctx.drawImage(hawkImg, b.x, b.y, b.width, b.height);
-        if (checkCollision(player, b)) return endGame();
-        if (b.x + b.width < 0) birds.splice(i, 1);
-      }
-    
-      // Score
-      ctx.fillStyle = "#000";
-      ctx.font = "20px Arial";
-      ctx.fillText("Score: " + score, 680, 30);
-      requestId = requestAnimationFrame(update);
-    }
-
-
-    function checkCollision(a, b) {
+    /******************
+     *  COLLISIONS
+     ******************/
+    function rectsOverlap(a, b) {
       return (
         a.x < b.x + b.width &&
         a.x + a.width > b.x &&
@@ -233,6 +182,107 @@
       );
     }
 
+    function playerCollides(obj) {
+      const hitbox = (player.ducking && player.grounded)
+        ? { x: player.x, y: player.y + 20, width: player.width, height: player.height - 20 }
+        : { x: player.x, y: player.y,       width: player.width, height: player.height };
+
+      return rectsOverlap(hitbox, obj);
+    }
+
+    /******************
+     *  UPDATE LOOP
+     ******************/
+    function update() {
+      if (gameOver) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      /* -- BACKGROUND -- */
+      ctx.fillStyle = "#b3e5fc";
+      ctx.fillRect(0, 0, canvas.width, groundY);
+      ctx.fillStyle = "#4e342e";
+      ctx.fillRect(0, groundY, canvas.width, canvas.height - groundY);
+
+      frameCount++;
+      score++;
+
+      /* -- DIFFICULTY RAMP -- */
+      if (score % 450 === 0) {
+        gameSpeed += 0.4;
+        birdSpawnInterval = Math.max(90, birdSpawnInterval - 4); // maintain fairness
+      }
+
+      /* -- SPAWN OBSTACLES -- */
+      if (frameCount > nextObstacleFrame) {
+        spawnObstacle();
+
+        // next obstacle gap scales with speed for fairness
+        const minGapFrames = Math.max(30, 300 / gameSpeed);
+        const randomExtra  = Math.random() * minGapFrames;
+        nextObstacleFrame = frameCount + minGapFrames + randomExtra;
+      }
+
+      /* -- SPAWN BIRDS -- */
+      if (frameCount % birdSpawnInterval === 0) {
+        spawnBird();
+      }
+
+      /* -- PHYSICS -- */
+      if (!player.grounded) {
+        player.dy += player.gravity;
+        if (player.ducking) player.dy += 1; // dive faster if ducking mid‑air
+      }
+      player.y += player.dy;
+
+      if (player.y >= 220) {
+        player.y = 220;
+        player.grounded = true;
+        player.jumping  = false;
+        player.dy = 0;
+      } else {
+        player.grounded = false;
+      }
+
+      /* -- DRAW PLAYER -- */
+      if (player.ducking && player.grounded) {
+        ctx.drawImage(monkeyImg, player.x, player.y + 20, player.width, player.height - 20);
+      } else {
+        ctx.drawImage(monkeyImg, player.x, player.y, player.width, player.height);
+      }
+
+      /* -- OBSTACLES -- */
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        const obs = obstacles[i];
+        obs.x -= gameSpeed;
+        ctx.fillStyle = "#6d4c41";
+        ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+
+        if (playerCollides(obs)) return endGame();
+        if (obs.x + obs.width < 0) obstacles.splice(i, 1);
+      }
+
+      /* -- BIRDS -- */
+      for (let i = birds.length - 1; i >= 0; i--) {
+        const b = birds[i];
+        b.x -= gameSpeed + 2.5; // birds fly slightly faster
+        ctx.drawImage(hawkImg, b.x, b.y, b.width, b.height);
+
+        if (playerCollides(b)) return endGame();
+        if (b.x + b.width < 0) birds.splice(i, 1);
+      }
+
+      /* -- SCORE -- */
+      ctx.fillStyle = "#000";
+      ctx.font = "20px Arial";
+      ctx.fillText("Score: " + score, 680, 30);
+
+      requestId = requestAnimationFrame(update);
+    }
+
+    /******************
+     *  GAME OVER + LEADERBOARD
+     ******************/
     function endGame() {
       cancelAnimationFrame(requestId);
       gameOver = true;
@@ -251,7 +301,7 @@
     }
 
     function updateLeaderboard() {
-      const list = document.getElementById("scoreList");
+      const list   = document.getElementById("scoreList");
       const scores = JSON.parse(localStorage.getItem("monkeyLeaderboard") || "[]");
       list.innerHTML = "";
       scores.forEach(s => {
@@ -261,13 +311,18 @@
       });
     }
 
+    /******************
+     *  CONTROLS
+     ******************/
     document.addEventListener("keydown", e => {
       if (gameOver) return;
+
       if ((e.code === "Space" || e.code === "ArrowUp") && player.grounded) {
         player.dy = -player.jumpForce;
         player.jumping = true;
         player.grounded = false;
       }
+
       if (e.code === "ArrowDown") {
         player.ducking = true;
       }
@@ -275,6 +330,8 @@
 
     document.addEventListener("keyup", e => {
       if (e.code === "ArrowDown") player.ducking = false;
+
+      // quick‑jump mechanic: release jump to cut height
       if ((e.code === "Space" || e.code === "ArrowUp") && player.jumping && player.dy < -8) {
         player.dy = -8;
       }
