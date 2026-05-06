@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@400;600;700&display=swap');
+
+/* === GLOBAL === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: 100px; /* or height of your navbar */
+}
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f4f4f4;
+  color: #222;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: background 0.5s, color 0.5s;
+}
+
+.dark-mode {
+  background-color: #111;
+  color: #eee;
+}
+
+/* === PARTICLES === */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+}
+
+/* === HEADER === */
+header {
+  padding: 2rem 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center both name and image horizontally */
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#profilePic {
+  width:240px; /* bigger image */
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(18, 247, 255, 0.8);
+}
+
+
+.info-text {
+  margin-right: 2rem;
+  min-width: 250px;
+}
+
+.image-wrapper {
+  flex-shrink: 0;
+}
+
+
+.hero-img {
+  max-width: 200px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.glitch-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #007acc; /* Dark green for light mode */
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px #90ee90, 0 0 10px #90ee90, 0 0 20px #007acc;
+  animation: flickerGreen 1.5s infinite alternate;
+}
+
+.dark-mode .glitch-title {
+  color: #00bfff; /* Deep blue */
+  text-shadow: 0 0 5px #00bfff, 0 0 15px #1e90ff, 0 0 25px #1e90ff;
+  animation: flickerBlue 1.5s infinite alternate;
+}
+
+@keyframes flickerGreen {
+  0%   { opacity: 1; text-shadow: 0 0 5px #90ee90; }
+  50%  { opacity: 0.85; text-shadow: 0 0 15px #90ee90, 0 0 20px #007acc; }
+  100% { opacity: 1; text-shadow: 0 0 8px #90ee90, 0 0 25px #007acc; }
+}
+
+@keyframes flickerBlue {
+  0%   { opacity: 1; text-shadow: 0 0 5px #00bfff; }
+  50%  { opacity: 0.85; text-shadow: 0 0 15px #1e90ff, 0 0 20px #1e90ff; }
+  100% { opacity: 1; text-shadow: 0 0 8px #00bfff, 0 0 25px #1e90ff; }
+}
+
+
+
+/* === SOCIAL BUTTONS === */
+.social-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem; /* <-- ADD THIS */
+}
+
+/* Light mode (default) */
+.linkedin-btn, .github-btn, .cv-btn, .tictactoe-btn, .monkeyBtn {
+  background-color: transparent;
+  color: var(--deep-blue);
+  border: 1px solid var(--deep-blue);
+  padding: 10px 15px;
+  border-radius: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 0 8px rgba(6, 95, 20, 0.3);
+}
+
+.linkedin-btn:hover,
+.github-btn:hover,
+.cv-btn:hover,
+.tictactoe-btn:hover,
+.monkeyBtn:hover{
+  background-color: rgba(6, 95, 20, 0.1);
+}
+
+/* Dark mode override */
+.dark-mode .linkedin-btn,
+.dark-mode .github-btn,
+.dark-mode .cv-btn,
+.dark-mode .tictactoe-btn,
+.dark-mode .monkeyBtn{
+  background-color: transparent;
+  color: #00bfff;
+  border: 1px solid #00bfff;
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
+}
+
+.dark-mode .linkedin-btn:hover,
+.dark-mode .github-btn:hover,
+.dark-mode .cv-btn:hover,
+.dark-mode .tictactoe-btn:hover,
+.dark-mode .monkeyBtn:hover{
+  background-color: rgba(0, 191, 255, 0.1);
+}
+
+/* === NAVBAR === */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dark-mode #navbar {
+  background: #000;
+}
+
+.section-btn {
+  background: #222;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.section-btn:hover {
+  background: #12f7ff;
+  color: #000;
+}
+
+/* === MAIN CONTENT === */
+.content-wrapper {
+  padding: 2rem;
+  z-index: 1;
+  position: relative;
+}
+
+section {
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: none;
+  max-width: 1000px;
+  margin: auto;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+}
+
+/* === LOTTIE === */
+.lottie-container {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.lottie-container iframe {
+  width: 300px;
+  height: 300px;
+  border: none;
+}
+
+/* === PROJECT CARDS === */
+.project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.project-card {
+  background: #fff;
+  color: #000;
+  padding: 1rem;
+  border-radius: 15px;
+  width: 220px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img {
+  width: 60px;
+  margin-bottom: 1rem;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px #12f7ff;
+}
+
+.dark-mode .project-card {
+  background: #1e1e1e;
+  color: #eee;
+}
+
+/* === TOGGLE & TOP BUTTON === */
+#themeToggle, #topBtn {
+  position: fixed;
+  bottom: 20px;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 1.2rem;
+  z-index: 999;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#themeToggle {
+  left: 20px;
+  background: #000;
+  color: #fff;
+}
+
+#topBtn {
+  right: 20px;
+  background: #12f7ff;
+  color: #000;
+}
+
+#topBtn:hover, #themeToggle:hover {
+  transform: scale(1.1);
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #000;
+  color: #12f7ff;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+
+/* === DARK MODE === */
+.dark-mode {
+  background: #000;
+  color: #eee;
+}
+
+.dark-mode .section-btn {
+  background: #fff;
+  color: #000;
+}
+
+.dark-mode .section-btn:hover {
+  background: #12f7ff;
+  color: black;
+}
+
+:root {
+  --matrix-green: #0aff0a;
+  --deep-blue: #007acc; /* same as title */
+}
+
+.dark-mode .linkedin-btn:hover,
+.dark-mode .github-btn:hover,
+.dark-mode .cv-btn:hover {
+  background-color: rgba(10, 255, 10, 0.1);
+}
+
+#statement p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+  max-width: 850px;
+  margin: auto;
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.05);
+  border-left: 3px solid #007acc;
+  border-radius: 8px;
+}
+.dark-mode #statement p {
+  background-color: rgba(255,255,255,0.05);
+  border-left: 3px solid #007acc;
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #12f7ff;
+  padding-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+section h3 {
+  font-size: 1.4rem;
+  color: #007acc;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.dark-mode section h3 {
+  color: #00bfff;
+}
+
+.edu-sub {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+section p, section ul li {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+section ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+section ul li::marker {
+  color: #12f7ff;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: inherit;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+#projects h2 {
+  margin-bottom: 0.5rem;
+}
+
+#projects .lottie-container p {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #333;
+}
+
