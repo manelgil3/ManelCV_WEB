@@ -1,57 +1,73 @@
-// ===== 1. Show current year in footer =====
-document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-// ===== 2. Top Scroll Button =====
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-
-// ===== 3. Sticky Navbar =====
-const navbar = document.getElementById("navbar");
-const sticky = navbar.offsetTop;
-
-window.onscroll = function () {
-  stickyNavbar();
-  fadeInOnScroll();
-};
-
-function stickyNavbar() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky");
-  } else {
-    navbar.classList.remove("sticky");
-  }
-}
-
-// ===== 4. Fade-In Animation on Scroll =====
-function fadeInOnScroll() {
-  let elements = document.querySelectorAll('.fade-in');
-  elements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    const visible = rect.top < window.innerHeight - 100;
-    if (visible) el.style.animation = "fadeIn 1s ease forwards";
-  });
-}
-
-// ===== 5. Dark/Light Theme Toggle =====
+const year = document.getElementById("currentYear");
 const themeToggle = document.getElementById("themeToggle");
+const topButton = document.getElementById("topBtn");
+const navLinks = Array.from(document.querySelectorAll(".nav a"));
+const sections = navLinks
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
 
-themeToggle.addEventListener("click", () => {
-  const body = document.body;
-  body.classList.toggle("dark-mode");
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
-  if (body.classList.contains("dark-mode")) {
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-  } else {
-    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-  }
+const storedTheme = localStorage.getItem("theme");
+const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+
+if (storedTheme === "light" || (!storedTheme && prefersLight)) {
+  document.body.classList.add("light-theme");
+}
+
+function updateThemeLabel() {
+  const isLight = document.body.classList.contains("light-theme");
+  themeToggle?.setAttribute("aria-label", isLight ? "Switch to dark theme" : "Switch to light theme");
+}
+
+updateThemeLabel();
+
+themeToggle?.addEventListener("click", () => {
+  document.body.classList.toggle("light-theme");
+  localStorage.setItem("theme", document.body.classList.contains("light-theme") ? "light" : "dark");
+  updateThemeLabel();
 });
 
-// ===== 6. Remove Loader After Delay =====
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const loader = document.querySelector('.loader');
-    if (loader) loader.style.display = 'none';
-  }, 2000); // adjust as needed
+topButton?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.14 }
+);
+
+document.querySelectorAll(".reveal").forEach((element) => {
+  revealObserver.observe(element);
+});
+
+const navObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+      });
+    });
+  },
+  { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 }
+);
+
+sections.forEach((section) => navObserver.observe(section));
+
+function updateTopButton() {
+  topButton?.classList.toggle("visible", window.scrollY > 700);
+}
+
+window.addEventListener("scroll", updateTopButton, { passive: true });
+updateTopButton();

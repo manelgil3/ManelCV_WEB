@@ -2,199 +2,415 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manel Gil Sorribes | AI Engineer</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Manel Gil Sorribes, AI Senior Project Manager and machine learning lecturer working on computational drug discovery, biomolecular interaction prediction, genomics, and scientific software." />
+  <meta name="theme-color" content="#07111f" />
+  <meta property="og:title" content="Manel Gil Sorribes | AI Senior Project Manager for Computational Drug Discovery" />
+  <meta property="og:description" content="AI Senior Project Manager and ML lecturer building deep learning systems for protein-ligand interaction prediction, genomics, and data-intensive science." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="manel.jpg" />
+  <title>Manel Gil Sorribes | AI Senior Project Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="flavicon.ico" type="image/x-icon" />
   <script src="script.js" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
 </head>
 
-<body class="light-mode">
-  <div id="particles-js"></div>
+<body>
+  <div class="site-bg" aria-hidden="true">
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="grid-fade"></span>
+  </div>
 
-  <header>
-    <div class="profile-container">
-      <div class="info-text">
-        <h1 class="glitch-title">MANEL GIL SORRIBES</h1>
-        <p>AI Engineer @ Nostrum Biodiscovery</p>
-        <p>manelgiso@gmail.com | Barcelona, Spain</p>
-        <div class="social-section">
-          <a href="https://www.linkedin.com/in/manel-gil-sorribes/" target="_blank" class="linkedin-btn">
-            <i class="fab fa-linkedin"></i> LinkedIn
-          </a>
-          <a href="https://github.com/manelgil3" target="_blank" class="github-btn">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="CV_Manel_Gil_Sorribes.pdf" class="cv-btn" download>
-            <i class="fas fa-file-pdf"></i> Download CV
-          </a>
-          <a href="tic-tac-toe.html" class="tictactoe-btn">
-            <i class="fas fa-gamepad"></i> TicTacToe
-          </a>
-            <a href="monkey_run.html" class="monkeyBtn" id="monkeyBtn">
-            <i class="fas fa-gamepad"></i> Monkey Run 🐵
-          </a>
-        </div>
-      </div>
-  
-      <div class="image-wrapper">
-        <img src="https://raw.githubusercontent.com/manelgil3/ManelCV_WEB/main/manel.jpg" alt="Manel Gil Sorribes" id="profilePic"/>
-      </div>
-    </div>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Manel Gil Sorribes home">
+      <span class="brand-mark">MGS</span>
+      <span>Manel Gil Sorribes</span>
+    </a>
 
+    <nav class="nav" id="navbar" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle color theme">
+      <span aria-hidden="true">Theme</span>
+    </button>
   </header>
 
+  <main>
+    <section class="hero section-shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">AI Senior Project Manager - ML Lecturer - Physicist</p>
+        <h1>Leading AI for biomolecular discovery.</h1>
+        <p class="hero-lede">
+          I lead and build machine learning systems for computational drug discovery,
+          protein-ligand interaction prediction, genomic sequence classification, and
+          data-intensive scientific workflows.
+        </p>
 
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="button primary" href="CV_Manel_Gil_Sorribes.pdf" download>Download CV</a>
+          <a class="button" href="mailto:manelgiso@gmail.com">Contact me</a>
+          <a class="button ghost" href="https://scholar.google.com/citations?user=Sa6n7-gAAAAJ" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a class="button ghost" href="https://github.com/manelgil3" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="button ghost" href="https://www.linkedin.com/in/manel-gil-sorribes/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
 
-  <nav id="navbar">
-    <a href="#statement" class="section-btn">About</a>
-    <a href="#education" class="section-btn">Education</a>
-    <a href="#experience" class="section-btn">Experience</a>
-    <a href="#publications" class="section-btn">Publications</a>
-    <a href="#skills" class="section-btn">Skills</a>
-    <a href="#certificates" class="section-btn">Certificates</a>
-    <a href="#iclr" class="section-btn">ICLR 2025</a>
-    <a href="#projects" class="section-btn">Projects</a>
-  </nav>
+        <dl class="hero-stats" aria-label="Professional snapshot">
+          <div>
+            <dt>Current role</dt>
+            <dd>AI Senior Project Manager at Nostrum Biodiscovery</dd>
+          </div>
+          <div>
+            <dt>Teaching</dt>
+            <dd>MSc Machine Learning Lecturer at UPC</dd>
+          </div>
+          <div>
+            <dt>Base</dt>
+            <dd>Barcelona, Spain</dd>
+          </div>
+        </dl>
+      </div>
 
-  <main class="content-wrapper">
-    <section id="statement" class="fade-in about-section">
-      <div class="about-container">
-        <div class="about-text">
-          <h2>About Me</h2>
-          <p>
-            I’m an AI Engineer and Physicist with deep expertise in Deep Learning, Transformers, and Generative AI.
-            At Nostrum Biodiscovery, I design state-of-the-art models for biomolecular interaction prediction, while my
-            past experience at the European Joint Research Centre focused on sequence classification for genomics.
-            I'm passionate about cross-disciplinary research and pushing the boundaries of AI.
-          </p>
+      <div class="hero-visual reveal">
+        <div class="portrait-frame">
+          <img src="manel.jpg" alt="Portrait of Manel Gil Sorribes" />
+        </div>
+        <div class="signal-card">
+          <span class="signal-dot"></span>
+          <p>Working where AI leadership, molecular data, biology, and deployable research software meet.</p>
         </div>
       </div>
     </section>
 
-    <section id="education" class="fade-in">
-      <h2>Education</h2>
-      <h3>Master in Intelligent Interactive Systems</h3>
-      <p class="edu-sub">Universitat Pompeu Fabra, 2023 · Barcelona, Spain</p>
-      <p>Courses: Machine Learning, NLP, Deep Learning</p>
-      <br/>
-      <h3>Bachelor in Physics</h3>
-      <p class="edu-sub">Universitat de Barcelona, 2020 · Barcelona, Spain</p>
-      <p>Mention in theoretical physics</p>
-    </section>
-
-    <section id="experience" class="fade-in">
-      <h2>Experience</h2>
-      <h3>AI Engineer</h3>
-      <p class="edu-sub">Nostrum Biodiscovery · Jan 2024 – Present</p>
-      <ul>
-        <li>Built deep learning models for protein-ligand prediction.</li>
-        <li>Used transformers and generative AI for drug discovery.</li>
-        <li>Collaborated with biologists + chemists to integrate AI into real research.</li>
-      </ul>
-      <h3>BI Consultant | Data Engineer</h3>
-      <p class="edu-sub">Capgemini · Mar 2022 – Dec 2023</p>
-      <ul>
-        <li>Designed ETL pipelines using PowerCenter, PL/SQL, SAP.</li>
-        <li>Helped manage data workflows for a major European energy client.</li>
-      </ul>
-      <h3>AI & ML Intern – Genomics</h3>
-      <p class="edu-sub">EU Joint Research Centre · Apr – Jul 2023</p>
-      <ul>
-        <li>Classified large-scale biological sequences with deep learning.</li>
-        <li>Built and evaluated custom architectures for DNA/metagenomics.</li>
-      </ul>
-    </section>
-
-    <section id="publications" class="fade-in">
-      <h2>Publications</h2>
-      <ul>
-        <li>“Gut Microbiome Analysis for Health Assessment”, HCist 2023</li>
-        <li>“Topological Deep Learning Challenge 2024”, ICML GRaM Workshop</li>
-      </ul>
-    </section>
-
-    <section id="skills" class="fade-in">
-      <h2>Skills</h2>
-      <h3>Deep Learning / ML</h3>
-      <ul><li>PyTorch, TensorFlow, Transformers, Contrastive Learning</li></ul>
-      <h3>NLP + Generative AI</h3>
-      <ul><li>GPT-4, BERT, HuggingFace, LLMs</li></ul>
-      <h3>Data + Cloud</h3>
-      <ul><li>SQL, ETL, PowerCenter, GCP, AWS</li></ul>
-      <h3>Languages</h3>
-      <ul><li>Spanish (native), Catalan (native), English (B2), Italian (beginner)</li></ul>
-    </section>
-
-    <section id="certificates" class="fade-in">
-      <h2>Certificates</h2>
-      <ul>
-        <li>Google Cloud – Cloud Digital Leader</li>
-        <li>Informatica – IICS Partner Bootcamp</li>
-        <li>Data Integration, Application Integration, Data Lake, etc.</li>
-      </ul>
-    </section>
-
-    <section id="iclr" class="fade-in">
-      <h2>ICLR 2025 Highlights</h2>
-      <ul>
-        <li><strong>RNA Tokenization</strong> @ AI4NA + LMRL Workshops</li>
-        <li><strong>Tensor-DTI</strong> @ LMRL + Biomolecular Design Workshops</li>
-        <li><strong>DDI Simplification</strong> @ Biomolecular Design Workshop</li>
-      </ul>
-    </section>
-
-    <section id="projects" class="fade-in">
-      <h2>Projects</h2>
-      <div class="lottie-container">
-        <p><em>AI meets molecules. Welcome to the frontier.</em></p>
+    <section class="section-shell intro-grid" id="about">
+      <div class="section-heading reveal">
+        <p class="eyebrow">About</p>
+        <h2>A research engineer with a physicist's instinct for models.</h2>
       </div>
+      <div class="prose-card reveal">
+        <p>
+          I am an AI Senior Project Manager with expertise in transformers, model fine-tuning,
+          and generative AI. At Nostrum Biodiscovery, I manage, develop, and optimize
+          deep learning models for computational drug discovery, coordinating AI engineers,
+          scientists, stakeholders, and client-facing technical communication.
+        </p>
+        <p>
+          My background combines physics, intelligent interactive systems, genomics research,
+          production data engineering, and teaching machine learning labs in UPC's Master in
+          Data Science. That mix helps me move from scientific question to data pipeline,
+          model architecture, evaluation, communication, and practical delivery.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-shell" id="experience">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Experience</p>
+        <h2>Leading applied AI across research, delivery, and teaching.</h2>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <div class="timeline-meta">
+            <span>Dec 2025 - Present</span>
+            <strong>Nostrum Biodiscovery</strong>
+          </div>
+          <div class="timeline-content">
+            <h3>AI Senior Project Manager</h3>
+            <ul>
+              <li>Leading AI and applied science projects in computational drug discovery.</li>
+              <li>Managing cross-functional teams of AI engineers, scientists, and stakeholders to deliver production-ready solutions.</li>
+              <li>Acting as the point of contact with clients, overseeing technical communication, progress reporting, and requirement alignment.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline-item reveal">
+          <div class="timeline-meta">
+            <span>Jan 2024 - Dec 2025</span>
+            <strong>Nostrum Biodiscovery</strong>
+          </div>
+          <div class="timeline-content">
+            <h3>Artificial Intelligence Engineer</h3>
+            <ul>
+              <li>Developing and optimizing deep learning models for protein-ligand interaction prediction.</li>
+              <li>Researching transformer and generative AI techniques to improve model performance.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline-item reveal">
+          <div class="timeline-meta">
+            <span>Feb 2026 - Present</span>
+            <strong>Universitat Politecnica de Catalunya</strong>
+          </div>
+          <div class="timeline-content">
+            <h3>MSc Machine Learning Lecturer - Part-time</h3>
+            <ul>
+              <li>Teaching laboratory sessions for the Machine Learning course in the Master in Data Science.</li>
+              <li>Covering core machine learning techniques and hands-on practical implementations.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline-item reveal">
+          <div class="timeline-meta">
+            <span>Apr 2023 - Jul 2023</span>
+            <strong>European Joint Research Centre & UPF</strong>
+          </div>
+          <div class="timeline-content">
+            <h3>AI & ML Intern - Genomics Research</h3>
+            <ul>
+              <li>Applied deep learning and machine learning techniques to genomic sequence classification.</li>
+              <li>Worked with large-scale biological datasets across preprocessing, feature extraction, and model optimization.</li>
+              <li>Developed and evaluated deep learning architectures for structured and unstructured sequence data.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline-item reveal">
+          <div class="timeline-meta">
+            <span>Mar 2022 - Dec 2023</span>
+            <strong>Capgemini</strong>
+          </div>
+          <div class="timeline-content">
+            <h3>Business Intelligence Consultant - Data Engineer</h3>
+            <ul>
+              <li>Worked on data integration, transformation, and automation using PL/SQL, Informatica PowerCenter, and SAP.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="timeline-item reveal">
+          <div class="timeline-meta">
+            <span>Jun 2020 - Mar 2022</span>
+            <strong>NTT Data</strong>
+          </div>
+          <div class="timeline-content">
+            <h3>BI Consultant - Data Engineer</h3>
+            <ul>
+              <li>Integrated data from Oracle Data Warehouse to Salesforce using SQL and ETLs.</li>
+              <li>Enabled structured data processing and transformation for predictive modeling tasks.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell" id="research">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Research Focus</p>
+        <h2>AI systems for molecular and biological sequence data.</h2>
+      </div>
+      <div class="focus-grid">
+        <article class="focus-card reveal">
+          <span>01</span>
+          <h3>Computational drug discovery leadership</h3>
+          <p>Applied AI project leadership across scientific requirements, model development, stakeholder alignment, and production delivery.</p>
+        </article>
+        <article class="focus-card reveal">
+          <span>02</span>
+          <h3>Protein-ligand interaction prediction</h3>
+          <p>Deep learning workflows for modeling biomolecular interactions and supporting computational drug discovery.</p>
+        </article>
+        <article class="focus-card reveal">
+          <span>03</span>
+          <h3>Transformers and generative AI</h3>
+          <p>Transformer-based modeling, LLM tooling, fine-tuning, and generative methods for scientific data problems.</p>
+        </article>
+        <article class="focus-card reveal">
+          <span>04</span>
+          <h3>Genomic sequence classification</h3>
+          <p>Machine learning pipelines for biological sequence data, from preprocessing and feature extraction to model evaluation.</p>
+        </article>
+        <article class="focus-card reveal">
+          <span>05</span>
+          <h3>Machine learning education</h3>
+          <p>Laboratory teaching for core ML techniques and practical implementations in a master's-level data science program.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell split-section" id="publications">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Publications</p>
+        <h2>Selected papers and conference work.</h2>
+      </div>
+      <div class="publication-list">
+        <article class="publication-card reveal">
+          <p class="tag">ICLR GEM and LMRL Workshops - 2025</p>
+          <h3>Tensor-DTI: Enhancing Biomolecular Interaction Prediction with Contrastive Embedding Learning</h3>
+          <p>Workshop paper presented at ICLR 2025 in Singapore.</p>
+          <div class="inline-links">
+            <a href="https://arxiv.org/abs/2601.05792" target="_blank" rel="noreferrer">arXiv</a>
+            <a href="https://arxiv.org/pdf/2601.05792.pdf" target="_blank" rel="noreferrer">PDF</a>
+          </div>
+        </article>
+        <article class="publication-card reveal">
+          <p class="tag">Journal of Cheminformatics - 2026</p>
+          <h3>Addressing Model Overcomplexity in Drug-Drug Interaction Prediction with Molecular Fingerprints</h3>
+          <p>Open-access journal article on simple, interpretable molecular fingerprint baselines for DDI and DDA prediction.</p>
+          <div class="inline-links">
+            <a href="https://link.springer.com/article/10.1186/s13321-025-01128-8" target="_blank" rel="noreferrer">Journal article</a>
+            <a href="https://doi.org/10.1186/s13321-025-01128-8" target="_blank" rel="noreferrer">DOI</a>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41709355/" target="_blank" rel="noreferrer">PubMed</a>
+          </div>
+        </article>
+        <article class="publication-card reveal">
+          <p class="tag">ICLR LMRL and AI4NA Workshops - 2025</p>
+          <h3>Character-level Tokenizations as Powerful Inductive Biases for RNA Foundational Models</h3>
+          <p>Workshop paper presented at ICLR 2025 in Singapore.</p>
+          <div class="inline-links">
+            <a href="https://arxiv.org/abs/2411.11808" target="_blank" rel="noreferrer">arXiv</a>
+            <a href="https://arxiv.org/pdf/2411.11808.pdf" target="_blank" rel="noreferrer">PDF</a>
+          </div>
+        </article>
+        <article class="publication-card reveal">
+          <p class="tag">Journal of Data-centric Machine Learning Research - 2025</p>
+          <h3>Topobench: A framework for benchmarking topological deep learning</h3>
+          <p>DMLR article introducing an open-source benchmarking framework for topological deep learning.</p>
+          <div class="inline-links">
+            <a href="https://openreview.net/forum?id=07sTzyEVtY" target="_blank" rel="noreferrer">OpenReview</a>
+            <a href="https://openreview.net/pdf?id=07sTzyEVtY" target="_blank" rel="noreferrer">PDF</a>
+          </div>
+        </article>
+        <article class="publication-card reveal">
+          <p class="tag">ICML GRaM Workshop - 2024</p>
+          <h3>ICML Topological Deep Learning Challenge 2024: Beyond the Graph Domain</h3>
+          <p>Workshop paper from ICML 2024 in Vienna.</p>
+          <div class="inline-links">
+            <a href="https://proceedings.mlr.press/v251/bernardez24a.html" target="_blank" rel="noreferrer">PMLR</a>
+            <a href="https://openreview.net/forum?id=2lSpwrCj9s" target="_blank" rel="noreferrer">OpenReview</a>
+          </div>
+        </article>
+        <article class="publication-card reveal">
+          <p class="tag">HCist Conference - 2023</p>
+          <h3>Gut Microbiome Analysis for Health Assessment</h3>
+          <p>Published and presented at the HCist Conference.</p>
+          <div class="inline-links">
+            <a href="https://www.sciencedirect.com/science/article/pii/S1877050924015618" target="_blank" rel="noreferrer">ScienceDirect</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell" id="projects">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Selected Work</p>
+        <h2>Professional work shaped around scientific usefulness.</h2>
+      </div>
+
       <div class="project-grid">
-        <div class="project-card">
-          <a href="https://arxiv.org/abs/2411.11808" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/5974/5974637.png" alt="RNA AI"/>
-            <h3>RNA Tokenization</h3>
-            <p>Character-level tokenization for RNA foundational models.</p>
-          </a>
-        </div>
-        <div class="project-card">
-          <img src="https://cdn-icons-png.flaticon.com/512/3405/3405806.png" alt="DTI"/>
-          <h3>Tensor-DTI</h3>
-          <p>Enhancing Biomolecular Interaction Prediction with Contrastive Embedding Learning.</p>
-        </div>
-        <div class="project-card">
-          <a href="https://arxiv.org/abs/2503.23550" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/4336/4336483.png" alt="DDI"/>
-            <h3>DDI Simplification</h3>
-            <p>Addressing Model Overcomplexity in Drug-Drug Interaction.</p>
-          </a>
-        </div>
-        <div class="project-card">
-          <a href="https://www.sciencedirect.com/science/article/pii/S1877050924015618" target="_blank">
-            <img src="https://cdn-icons-png.flaticon.com/512/1039/1039700.png" alt="Thesis"/>
-            <h3>Master Thesis</h3>
-            <p>ML-based predictive gut microbiome analysis for health assessment.</p>
-          </a>
+        <article class="project-card reveal">
+          <p class="tag">Computational drug discovery</p>
+          <h3>AI project leadership</h3>
+          <p>Leading applied science projects, coordinating teams, aligning requirements, and communicating technical progress with clients.</p>
+        </article>
+        <article class="project-card reveal">
+          <p class="tag">Biomolecular interaction prediction</p>
+          <h3>Protein-ligand modeling</h3>
+          <p>Deep learning model development and optimization for predicting biomolecular interactions at Nostrum Biodiscovery.</p>
+        </article>
+        <article class="project-card reveal">
+          <p class="tag">Higher education</p>
+          <h3>Machine learning labs</h3>
+          <p>Part-time teaching for UPC's Master in Data Science, focused on core ML techniques and practical implementations.</p>
+        </article>
+        <article class="project-card reveal">
+          <p class="tag">Bioinformatics</p>
+          <h3>Genomic sequence classification</h3>
+          <p>Research internship work applying ML/DL methods to biological sequence datasets.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell skills-section" id="skills">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Technical Stack</p>
+        <h2>Tools I use to bridge models, data, and delivery.</h2>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card reveal">
+          <h3>Machine Learning</h3>
+          <p>PyTorch, TensorFlow, transformer models, generative AI, model fine-tuning</p>
+        </article>
+        <article class="skill-card reveal">
+          <h3>NLP & LLMs</h3>
+          <p>BERT, GPT-3/4, Hugging Face Transformers, sequence modeling</p>
+        </article>
+        <article class="skill-card reveal">
+          <h3>Data Engineering</h3>
+          <p>SQL, data preprocessing, ETL pipelines, PL/SQL, Informatica PowerCenter, SAP</p>
+        </article>
+        <article class="skill-card reveal">
+          <h3>Cloud & Software</h3>
+          <p>GCP, AWS, Salesforce Sales Cloud, Informatica Cloud, Microsoft Office, LaTeX</p>
+        </article>
+        <article class="skill-card reveal">
+          <h3>Languages</h3>
+          <p>Spanish and Catalan native, fluent English with B2 certificate, beginner Italian</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell credentials-grid" id="education">
+      <div class="education-panel reveal">
+        <p class="eyebrow">Education</p>
+        <h2>Academic foundation</h2>
+        <article>
+          <h3>Master in Intelligent Interactive Systems</h3>
+          <p>Universitat Pompeu Fabra - 2023 - Barcelona, Spain</p>
+          <span>Machine Learning - Natural Language Processing - Deep Learning</span>
+        </article>
+        <article>
+          <h3>Bachelor in Physics</h3>
+          <p>Universitat de Barcelona - 2020 - Barcelona, Spain</p>
+          <span>Mention in theoretical physics</span>
+        </article>
+      </div>
+
+      <div class="education-panel reveal">
+        <p class="eyebrow">Certificates & Learning</p>
+        <h2>Continued training</h2>
+        <ul class="clean-list">
+          <li>Google Cloud - Cloud Digital Leader</li>
+          <li>IICS - Cloud Data Integration Partner Bootcamp, Champion Certificate</li>
+          <li>Computer Vision Basics, University at Buffalo, Coursera</li>
+          <li>Bachelor thesis: Study of the Blume-Emery-Griffiths Phase Separation Model</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-shell contact-section" id="contact">
+      <div class="contact-card reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>Open to research conversations, AI/ML roles, and scientific collaborations.</h2>
+        <p>
+          The fastest way to reach me is email. You can also find my code and professional updates on GitHub and LinkedIn.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="mailto:manelgiso@gmail.com">manelgiso@gmail.com</a>
+          <a class="button" href="https://scholar.google.com/citations?user=Sa6n7-gAAAAJ" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a class="button" href="https://www.linkedin.com/in/manel-gil-sorribes/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="button" href="https://github.com/manelgil3" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="button ghost" href="CV_Manel_Gil_Sorribes.pdf" download>Download CV</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div id="currentYear"></div>
-    <p>Made with ❤️ by Manel & ChatGPT | Inspired by AI + Molecules</p>
+  <footer class="site-footer">
+    <p><span id="currentYear"></span> Manel Gil Sorribes. AI/ML for data-intensive science.</p>
+    <button class="top-button" id="topBtn" type="button" aria-label="Back to top">Top</button>
   </footer>
-
-  <button class="section-btn" id="topBtn" onclick="topFunction()">Top</button>
-  <button id="themeToggle" class="light-mode"><i class="fas fa-moon"></i></button>
-
-  <script>
-    particlesJS.load('particles-js', 'particles.json', function() {
-      console.log('particles.js config loaded');
-    });
-  </script>
 </body>
 </html>
