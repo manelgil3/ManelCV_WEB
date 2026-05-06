@@ -290,7 +290,7 @@ a {
 .section-shell {
   width: min(var(--max), calc(100% - 32px));
   margin: 0 auto;
-  padding: 96px 0;
+  padding: 88px 0;
 }
 
 .hero {
@@ -298,8 +298,9 @@ a {
   grid-template-columns: minmax(720px, 1fr) minmax(360px, 0.62fr);
   gap: clamp(36px, 4vw, 64px);
   align-items: center;
-  min-height: calc(100vh - 76px);
-  padding-top: 72px;
+  min-height: 0;
+  padding-top: clamp(44px, 7vh, 96px);
+  padding-bottom: clamp(64px, 8vh, 112px);
 }
 
 .hero-copy {
@@ -334,6 +335,15 @@ h1 {
 html[lang="ca"] h1 {
   max-width: 100%;
   font-size: clamp(3rem, 3.55vw, 4.25rem);
+}
+
+html[lang="ca"] .signal-card {
+  max-width: 210px;
+  padding: 12px 13px;
+}
+
+html[lang="ca"] .signal-card p {
+  font-size: 0.72rem;
 }
 
 h2 {
@@ -465,28 +475,29 @@ h3 {
 
 .signal-card {
   position: absolute;
-  right: -18px;
-  bottom: 28px;
-  max-width: 300px;
+  right: 14px;
+  bottom: 14px;
+  max-width: 230px;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
   box-shadow: var(--shadow);
-  padding: 18px;
+  padding: 13px 14px;
   backdrop-filter: blur(18px);
 }
 
 .signal-card p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
 }
 
 .signal-dot {
   display: block;
   width: 10px;
   height: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 9px;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 8px rgba(68, 215, 182, 0.16);
