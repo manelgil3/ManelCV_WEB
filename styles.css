@@ -295,14 +295,15 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
-  gap: clamp(56px, 6vw, 92px);
-  align-items: center;
-  min-height: calc(100vh - 76px);
+  grid-template-columns: 1fr;
+  gap: 42px;
+  align-items: start;
+  min-height: auto;
   padding-top: 72px;
 }
 
 .hero-copy {
+  max-width: 980px;
   min-width: 0;
 }
 
@@ -323,15 +324,16 @@ p {
 }
 
 h1 {
-  max-width: 760px;
+  max-width: 920px;
   margin-bottom: 24px;
-  font-size: clamp(3.2rem, 6vw, 6.1rem);
+  font-size: clamp(3.1rem, 6.2vw, 6.4rem);
   line-height: 0.95;
   letter-spacing: 0;
 }
 
 html[lang="ca"] h1 {
-  font-size: clamp(3rem, 5.2vw, 5.35rem);
+  max-width: 900px;
+  font-size: clamp(3rem, 5.4vw, 5.7rem);
 }
 
 h2 {
@@ -432,6 +434,9 @@ h3 {
 
 .hero-visual {
   position: relative;
+  width: min(760px, 100%);
+  justify-self: end;
+  min-width: 0;
 }
 
 .portrait-frame {
@@ -441,7 +446,7 @@ h3 {
   border-radius: 28px;
   background: var(--surface);
   box-shadow: var(--shadow);
-  aspect-ratio: 0.86;
+  aspect-ratio: 1.18;
 }
 
 .portrait-frame::after {
@@ -746,6 +751,37 @@ h3 {
 
   .focus-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1280px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    align-items: start;
+  }
+
+  .hero-copy {
+    max-width: 860px;
+  }
+
+  h1,
+  html[lang="ca"] h1 {
+    max-width: 820px;
+    font-size: clamp(3.2rem, 7vw, 5.4rem);
+  }
+
+  .hero-lede {
+    max-width: 820px;
+  }
+
+  .hero-visual {
+    width: min(680px, 100%);
+    justify-self: start;
+  }
+
+  .portrait-frame {
+    aspect-ratio: 1.2;
   }
 }
 
