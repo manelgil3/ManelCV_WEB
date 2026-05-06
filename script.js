@@ -1,6 +1,7 @@
 const year = document.getElementById("currentYear");
 const themeToggle = document.getElementById("themeToggle");
 const topButton = document.getElementById("topBtn");
+const brandLink = document.querySelector(".brand");
 const navLinks = Array.from(document.querySelectorAll(".nav a"));
 const sections = navLinks
   .map((link) => document.querySelector(link.getAttribute("href")))
@@ -31,6 +32,11 @@ themeToggle?.addEventListener("click", () => {
 });
 
 topButton?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+brandLink?.addEventListener("click", (event) => {
+  event.preventDefault();
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
