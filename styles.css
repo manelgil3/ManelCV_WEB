@@ -122,7 +122,7 @@ a {
   z-index: 20;
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 20px;
+  gap: 16px;
   align-items: center;
   width: min(var(--max), calc(100% - 32px));
   margin: 0 auto;
@@ -189,7 +189,8 @@ a {
 }
 
 .icon-button,
-.top-button {
+.top-button,
+.language-button {
   display: grid;
   place-items: center;
   border: 1px solid var(--line);
@@ -209,8 +210,78 @@ a {
   font-weight: 800;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;
+}
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 4px;
+}
+
+.language-button {
+  grid-auto-flow: column;
+  gap: 7px;
+  min-width: 66px;
+  height: 34px;
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+  padding: 0 10px;
+}
+
+.language-button.active {
+  background: var(--surface-strong);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+.flag {
+  display: inline-block;
+  width: 22px;
+  height: 15px;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+
+.flag-cat {
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffd447 0 11.11%,
+    #d82027 11.11% 22.22%
+  );
+}
+
+.flag-uk {
+  position: relative;
+  background: #123f8c;
+}
+
+.flag-uk::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(34deg, transparent 0 42%, #fff 42% 48%, #c8102e 48% 52%, #fff 52% 58%, transparent 58%),
+    linear-gradient(-34deg, transparent 0 42%, #fff 42% 48%, #c8102e 48% 52%, #fff 52% 58%, transparent 58%),
+    linear-gradient(to right, transparent 0 39%, #fff 39% 45%, #c8102e 45% 55%, #fff 55% 61%, transparent 61%),
+    linear-gradient(to bottom, transparent 0 34%, #fff 34% 42%, #c8102e 42% 58%, #fff 58% 66%, transparent 66%);
+}
+
 .icon-button:hover,
-.top-button:hover {
+.top-button:hover,
+.language-button:hover {
   transform: translateY(-2px);
   background: var(--surface-strong);
   border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
@@ -639,6 +710,11 @@ h3 {
     justify-self: end;
   }
 
+  .header-actions {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
   .hero,
   .intro-grid,
   .split-section,
@@ -680,6 +756,23 @@ h3 {
 
   .brand span:last-child {
     display: none;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  .language-button {
+    min-width: 48px;
+    padding: 0 8px;
+  }
+
+  .language-button span:last-child {
+    display: none;
+  }
+
+  .icon-button {
+    min-width: 58px;
   }
 
   .section-shell {
