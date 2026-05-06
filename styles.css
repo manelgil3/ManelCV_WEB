@@ -295,11 +295,15 @@ a {
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
+  gap: clamp(56px, 6vw, 92px);
   align-items: center;
   min-height: calc(100vh - 76px);
   padding-top: 72px;
+}
+
+.hero-copy {
+  min-width: 0;
 }
 
 .eyebrow {
@@ -319,11 +323,15 @@ p {
 }
 
 h1 {
-  max-width: 850px;
+  max-width: 760px;
   margin-bottom: 24px;
-  font-size: clamp(3.2rem, 7vw, 6.8rem);
+  font-size: clamp(3.2rem, 6vw, 6.1rem);
   line-height: 0.95;
   letter-spacing: 0;
+}
+
+html[lang="ca"] h1 {
+  font-size: clamp(3rem, 5.2vw, 5.35rem);
 }
 
 h2 {
