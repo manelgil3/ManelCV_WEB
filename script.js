@@ -176,7 +176,7 @@ const translations = {
     theme: "Tema",
     theme_dark_aria: "Canvia al tema fosc",
     theme_light_aria: "Canvia al tema clar",
-    nav_about: "Sobre mi",
+    nav_about: "Perfil",
     nav_experience: "Experiència",
     nav_research: "Recerca",
     nav_publications: "Publicacions",
